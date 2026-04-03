@@ -4,15 +4,31 @@ import { useState, useEffect } from "react"
 import { Navigation } from "@/components/navigation"
 import { ArrowRight, Download, MapPin, GraduationCap, Code2, Brain, Zap, ArrowUp } from "lucide-react"
 import { Spinner } from "@/components/spinner"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from "zod"
+
+const contactSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  subject: z.string().min(5, "Subject must be at least 5 characters"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+})
+
+type ContactFormValues = z.infer<typeof contactSchema>
 
 export default function Home() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  })
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+  
+  const {
+    register,
+    handleSubmit: hookFormSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ContactFormValues>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: { name: "", email: "", subject: "", message: "" },
+  })
   const [showBackToTop, setShowBackToTop] = useState(false)
   const [statsAnimated, setStatsAnimated] = useState(false)
   const [stats, setStats] = useState({
@@ -109,8 +125,7 @@ export default function Home() {
     document.head.appendChild(typedScript)
   }, [])
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const onSubmit = async (data: ContactFormValues) => {
     setStatus("loading")
 
     try {
@@ -119,17 +134,12 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-        }),
+        body: JSON.stringify(data),
       })
 
       if (response.ok) {
         setStatus("success")
-        setFormData({ name: "", email: "", subject: "", message: "" })
+        reset()
         setTimeout(() => setStatus("idle"), 5000)
       } else {
         setStatus("error")
@@ -786,30 +796,28 @@ export default function Home() {
 
             <div data-aos="fade-up" data-aos-delay={200}>
               <h3 className="text-2xl font-bold mb-6 text-foreground">Send a Message</h3>
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={hookFormSubmit(onSubmit)} className="space-y-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-sm font-medium mb-2 text-foreground">Name</label>
                     <input
                       type="text"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      required
-                      className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                      {...register("name")}
+                      className={`w-full px-4 py-3 bg-background border rounded-lg focus:outline-none focus:ring-1 transition-colors ${errors.name ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-input focus:border-primary focus:ring-primary'}`}
                       placeholder="Your name"
                     />
+                    {errors.name && <p className="text-red-500 text-xs mt-1 font-medium">{errors.name.message}</p>}
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium mb-2 text-foreground">Email</label>
                     <input
                       type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      required
-                      className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                      {...register("email")}
+                      className={`w-full px-4 py-3 bg-background border rounded-lg focus:outline-none focus:ring-1 transition-colors ${errors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-input focus:border-primary focus:ring-primary'}`}
                       placeholder="your.email@example.com"
                     />
+                    {errors.email && <p className="text-red-500 text-xs mt-1 font-medium">{errors.email.message}</p>}
                   </div>
                 </div>
 
@@ -817,24 +825,22 @@ export default function Home() {
                   <label className="block text-sm font-medium mb-2 text-foreground">Subject</label>
                   <input
                     type="text"
-                    value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    required
-                    className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                    {...register("subject")}
+                    className={`w-full px-4 py-3 bg-background border rounded-lg focus:outline-none focus:ring-1 transition-colors ${errors.subject ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-input focus:border-primary focus:ring-primary'}`}
                     placeholder="Project inquiry, collaboration, etc."
                   />
+                  {errors.subject && <p className="text-red-500 text-xs mt-1 font-medium">{errors.subject.message}</p>}
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium mb-2 text-foreground">Message</label>
                   <textarea
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    required
+                    {...register("message")}
                     rows={5}
-                    className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none"
+                    className={`w-full px-4 py-3 bg-background border rounded-lg focus:outline-none focus:ring-1 transition-colors resize-none ${errors.message ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-input focus:border-primary focus:ring-primary'}`}
                     placeholder="Tell me about your project or opportunity..."
                   />
+                  {errors.message && <p className="text-red-500 text-xs mt-1 font-medium">{errors.message.message}</p>}
                 </div>
 
                 <button
