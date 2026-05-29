@@ -57,7 +57,7 @@ export default function Home() {
   }, [statsAnimated])
 
   const animateStats = () => {
-    const targets = { roles: 2, projects: 3, cgpa: 3.8, years: 1 }
+    const targets = { roles: 2, projects: 6, cgpa: 3.8, years: 1 }
     const duration = 1500
     const steps = 60
     const interval = duration / steps
@@ -188,7 +188,7 @@ export default function Home() {
     {
       role: "ML Engineer",
       company: "WebTech.dev Software House",
-      period: "Jan 2025 – Mar 2025",
+      period: "Jan 2026 to April 2026",
       location: "Vehari, Pakistan",
       responsibilities: [
         "Built end-to-end ML pipelines (data cleaning → feature engineering → model training → deployment) for client projects using Scikit-learn, XGBoost, and LightGBM.",
@@ -200,7 +200,7 @@ export default function Home() {
     {
       role: "Backend Developer",
       company: "ZA Coder",
-      period: "Jan 2025 – Dec 2025",
+      period: "August 2025 to Dec 2025",
       location: "Pakistan",
       responsibilities: [
         "Designed and maintained scalable REST APIs using FastAPI with Pydantic validation, JWT authentication, and role-based access control (RBAC) across multiple backend services.",
@@ -250,6 +250,26 @@ export default function Home() {
       github: "https://github.com/Dev-with-Mouzan",
       demo: "#",
       demoText: "Coming Soon",
+    },
+    {
+      title: "FounderLens AI",
+      category: "Agentic AI",
+      description: "A high-fidelity Multi-Agent Boardroom & Strategic Outcome Simulation Platform that ingests multi-source data to perform strategic simulations and resolve contradictions.",
+      pipeline: "multi-source ingestion → temporal analysis → contradiction resolution → outcome simulation → trace audit.",
+      tech: ["FastAPI", "CrewAI", "LangChain", "OpenAI API", "Python"],
+      github: "https://github.com/Dev-with-Mouzan/FounderLens_AI.git",
+      demo: "https://founderai-production-a4e4.up.railway.app/",
+      demoText: "Live API ↗",
+    },
+    {
+      title: "CareerCopilot AI",
+      category: "AI Agent System",
+      description: "An AI-powered job search and career strategy assistant featuring specialized agents for job hunting, ATS analysis, and career planning.",
+      pipeline: "job board scraping → ATS keyword gap analysis → resume rewrite → career strategy synthesis.",
+      tech: ["AI Agents", "Python", "LLMs", "OpenAI API"],
+      github: "https://github.com/Dev-with-Mouzan/CareerCopilot_AI.git",
+      demo: "#",
+      demoText: "Source Code ↗",
     },
   ]
 

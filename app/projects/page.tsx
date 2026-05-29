@@ -43,6 +43,31 @@ export default function Projects() {
       ],
       tech: ["Multi-Agent LLMs", "Tool Use", "Orchestration", "LangChain", "APIs"],
     },
+    {
+      title: "FounderLens AI",
+      category: "Agentic AI",
+      description: "A high-fidelity Multi-Agent Boardroom & Strategic Outcome Simulation Platform that ingests multi-source data to perform strategic simulations and resolve contradictions.",
+      details: [
+        "Ingests PDF reports, CSV spreadsheets, JSON feeds, and Website URLs simultaneously",
+        "Tracks signal trajectories over time for temporal analysis",
+        "Automatically resolves data contradictions using multi-agent CrewAI orchestration",
+        "Generates multi-step action chains and visualizes Monte Carlo success curves",
+        "Triggers outbound Discord Webhook with rich simulated outcomes",
+      ],
+      tech: ["CrewAI", "FastAPI", "LangChain", "OpenAI gpt-4o-mini", "Python"],
+    },
+    {
+      title: "CareerCopilot AI",
+      category: "AI Agent System",
+      description: "An AI-powered job search and career strategy assistant featuring specialized agents for job hunting, ATS analysis, and career planning.",
+      details: [
+        "Lead Job Hunter agent scours LinkedIn and remote job boards for matches",
+        "ATS Analyst evaluates job descriptions to identify keyword gaps",
+        "Scores and rewrites existing resumes for maximum ATS pass-through",
+        "Career Strategist agent synthesizes data into a cohesive career plan",
+      ],
+      tech: ["AI Agents", "Python", "LLMs"],
+    },
   ]
 
   return (
