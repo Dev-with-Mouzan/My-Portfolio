@@ -19,7 +19,7 @@ type ContactFormValues = z.infer<typeof contactSchema>
 
 export default function Home() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
-  
+
   const {
     register,
     handleSubmit: hookFormSubmit,
@@ -57,7 +57,7 @@ export default function Home() {
   }, [statsAnimated])
 
   const animateStats = () => {
-    const targets = { roles: 2, projects: 6, cgpa: 3.8, years: 1 }
+    const targets = { roles: 2, projects: 6, cgpa: 3.85, years: 1 }
     const duration = 1500
     const steps = 60
     const interval = duration / steps
@@ -186,9 +186,20 @@ export default function Home() {
 
   const experience = [
     {
+      role: "AI Automation Engineer",
+      company: "Freelance",
+      period: "25th Dec 2025 - Present",
+      location: "Remote",
+      responsibilities: [
+        "Worked with Multi-agent systems utilizing CrewAI and LangGraph for complex task orchestration.",
+        "Developed and optimized RAG (Retrieval-Augmented Generation) systems, implementing both vector-based and vectorless RAG architectures for intelligent data retrieval.",
+      ],
+      tech: ["CrewAI", "LangGraph", "Python", "RAG", "LLMs"],
+    },
+    {
       role: "ML Engineer",
       company: "WebTech.dev Software House",
-      period: "Jan 2026 to April 2026",
+      period: "10th June 2025 - 10th December 2025",
       location: "Vehari, Pakistan",
       responsibilities: [
         "Built end-to-end ML pipelines (data cleaning → feature engineering → model training → deployment) for client projects using Scikit-learn, XGBoost, and LightGBM.",
@@ -196,17 +207,6 @@ export default function Home() {
         "Performed exploratory data analysis (EDA) and delivered data visualization reports using Pandas, Matplotlib, and Seaborn to support business decisions.",
       ],
       tech: ["Python", "Scikit-learn", "XGBoost", "HuggingFace", "FastAPI", "Pandas", "Matplotlib"],
-    },
-    {
-      role: "Backend Developer",
-      company: "ZA Coder",
-      period: "August 2025 to Dec 2025",
-      location: "Pakistan",
-      responsibilities: [
-        "Designed and maintained scalable REST APIs using FastAPI with Pydantic validation, JWT authentication, and role-based access control (RBAC) across multiple backend services.",
-        "Wrote complex SQL queries including joins, CTEs, and window functions in PostgreSQL; containerized services with Docker and automated CI/CD pipelines via GitHub Actions.",
-      ],
-      tech: ["FastAPI", "PostgreSQL", "SQL", "Pydantic", "JWT", "Docker", "GitHub Actions"],
     },
   ]
 
@@ -217,9 +217,7 @@ export default function Home() {
       description: "A production-style Retrieval-Augmented Generation (RAG) system that lets users upload documents and get accurate, cited answers with zero hallucinations.",
       pipeline: "document ingestion → chunking → embedding → vector search (FAISS/Chroma) → hybrid retrieval → re-ranking → LLM generation. Includes corrective RAG, multi-query retrieval, and context compression.",
       tech: ["Python", "LangGraph", "FAISS", "Chroma", "FastAPI", "HuggingFace", "OpenAI API"],
-      github: "https://github.com/Dev-with-Mouzan",
-      demo: "#",
-      demoText: "Live Demo ↗",
+      github: "https://github.com/Dev-with-Mouzan/RAG-Q-A-System.git",
     },
     {
       title: "AI Resume ATS Score Checker",
@@ -227,8 +225,8 @@ export default function Home() {
       description: "Analyzes a resume against a job description, computes an ATS compatibility score, and generates role-specific LLM-powered improvement suggestions for job seekers.",
       pipeline: "PDF parsing → semantic similarity scoring → structured LLM feedback → Streamlit UI.",
       tech: ["Python", "HuggingFace", "Streamlit", "OpenAI API", "Pandas", "NLP"],
-      github: "https://github.com/Dev-with-Mouzan",
-      demo: "#",
+      github: "https://github.com/Dev-with-Mouzan/Resume-ATS-Score-Checker.git",
+      demo: "https://resume-ats-score-checker-eqxfvszxnzzh3pyc9k3e5e.streamlit.app/",
       demoText: "Live Demo ↗",
     },
     {
@@ -495,7 +493,7 @@ export default function Home() {
                     to LLM applications, RAG systems, Agentic AI, fine-tuning, and LLMOps.
                   </p>
                   <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                    I have professional experience as an <span className="font-semibold text-foreground">ML Engineer</span> and <span className="font-semibold text-foreground">Backend Developer</span> — giving me
+                    I have professional experience as an <span className="font-semibold text-foreground">AI Automation Engineer</span> and <span className="font-semibold text-foreground">ML Engineer</span> — giving me
                     real-world exposure to building and deploying robust, scalable, AI-powered systems.
                   </p>
                 </div>
@@ -506,7 +504,7 @@ export default function Home() {
               {[
                 { icon: <MapPin size={24} className="text-violet-500" />, label: "Location", value: "Burewala, Pakistan" },
                 { icon: <GraduationCap size={24} className="text-fuchsia-500" />, label: "Education", value: "B.Sc. CS" },
-                { icon: <Zap size={24} className="text-amber-500" />, label: "Experience", value: "ML Engineer" },
+                { icon: <Zap size={24} className="text-amber-500" />, label: "Experience", value: "AI Automation Engineer" },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-4 p-5 rounded-2xl bg-secondary/30 border border-border hover:bg-secondary/60 transition-colors group">
                   <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-background shadow-sm border border-border group-hover:scale-105 transition-transform">
@@ -522,7 +520,7 @@ export default function Home() {
               <div className="flex-1 mt-2 p-6 rounded-2xl bg-gradient-to-br from-violet-600 to-fuchsia-600 text-white relative overflow-hidden group min-h-[140px] flex flex-col justify-center items-center shadow-lg shadow-violet-500/20">
                 <div className="absolute inset-0 opacity-20 mix-blend-overlay" style={{ backgroundImage: "radial-gradient(circle at center, #ffffff 1px, transparent 1px)", backgroundSize: "16px 16px" }}></div>
                 <div className="relative z-10 flex flex-col items-center justify-center text-center space-y-2 group-hover:scale-105 transition-transform">
-                  <span className="text-5xl font-black tracking-tight drop-shadow-md">3.80</span>
+                  <span className="text-5xl font-black tracking-tight drop-shadow-md">3.85</span>
                   <span className="text-violet-100 font-bold uppercase tracking-[0.2em] text-xs opacity-90">Current CGPA</span>
                 </div>
               </div>
@@ -691,9 +689,11 @@ export default function Home() {
                         <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-foreground flex items-center gap-2 transition-colors hover:opacity-80">
                           <Code2 size={18} /> Source Code
                         </a>
-                        <a href={project.demo} className={`text-sm font-bold flex items-center gap-2 hover:translate-x-1 transition-all ${conf.icon}`}>
-                          {project.demoText} <ArrowRight size={16} />
-                        </a>
+                        {project.demoText && (
+                          <a href={project.demo || "#"} className={`text-sm font-bold flex items-center gap-2 hover:translate-x-1 transition-all ${conf.icon}`}>
+                            {project.demoText} {project.demoText !== "Coming Soon" && <ArrowRight size={16} />}
+                          </a>
+                        )}
                       </div>
                     </div>
                   </div>

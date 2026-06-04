@@ -6,8 +6,19 @@ export default function Experience() {
   const experience = [
     {
       role: "AI Automation Engineer",
-      company: "Zacorder",
-      period: "2023 - Present",
+      company: "Freelance",
+      period: "25th Dec 2025 - Present",
+      description: "Developed advanced AI solutions using multi-agent architectures and RAG systems",
+      responsibilities: [
+        "Built multi-agent systems utilizing CrewAI and LangGraph for autonomous task execution",
+        "Implemented and optimized both vector-based and vectorless RAG systems for intelligent data retrieval",
+        "Designed complex LLM-powered automation workflows to enhance productivity",
+      ],
+    },
+    {
+      role: "AI Automation Engineer",
+      company: "Webtech",
+      period: "10th Jun 2025 - 10th Dec 2025",
       description: "Led AI automation initiatives and prototype development",
       responsibilities: [
         "Architected LLM-powered automation workflows using n8n and custom agents",
