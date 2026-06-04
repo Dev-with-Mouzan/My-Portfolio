@@ -373,7 +373,8 @@ export default function Home() {
                   <ArrowRight size={18} />
                 </a>
                 <a
-                  href="https://docs.google.com/document/d/1lQUUAsvwclepFb66l-zzujct6nFHP8-O/edit?usp=sharing&ouid=113797468387203400265&rtpof=true&sd=true"
+                  href="/Mouzan_Raza_Resume.docx"
+                  download="Mouzan_Raza_Resume.docx"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-3 px-8 py-4 border-2 border-border text-foreground hover:border-violet-500 hover:text-violet-600 dark:hover:text-violet-400 rounded-full hover:bg-violet-50 dark:hover:bg-violet-900/20 transition-all font-semibold text-base"
