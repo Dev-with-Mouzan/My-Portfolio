@@ -58,7 +58,7 @@ export function ProfileImage() {
                     transform: "translateZ(75px)",
                     transformStyle: "preserve-3d",
                 }}
-                className="absolute inset-0 bg-gradient-to-br from-primary/30 via-purple-500/30 to-pink-500/20 rounded-3xl blur-3xl opacity-60 group-hover:opacity-100 transition-opacity duration-500"
+                className="absolute inset-0 bg-gradient-to-br from-accent/30 via-accent/20 to-accent/10 rounded-3xl blur-3xl opacity-60 group-hover:opacity-100 transition-opacity duration-500"
                 animate={{
                     scale: [1, 1.1, 1],
                     rotate: [0, 5, 0],
@@ -79,7 +79,7 @@ export function ProfileImage() {
                 className="relative h-full w-full rounded-3xl border-2 border-white/20 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm shadow-2xl overflow-hidden"
             >
                 {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-purple-500/20 mix-blend-overlay z-10" />
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-transparent to-accent/10 mix-blend-overlay z-10" />
 
                 <img
                     src="/mouzan-profile.png"
@@ -103,7 +103,7 @@ export function ProfileImage() {
             {/* Floating Elements with enhanced animations */}
             <motion.div
                 style={{ transform: "translateZ(120px)" }}
-                className="absolute -top-6 -right-6 w-16 h-16 bg-gradient-to-br from-primary/30 to-primary/10 backdrop-blur-md rounded-full border-2 border-white/30 flex items-center justify-center shadow-xl"
+                className="absolute -top-6 -right-6 w-16 h-16 bg-gradient-to-br from-accent/30 to-accent/10 backdrop-blur-md rounded-full border-2 border-white/30 flex items-center justify-center shadow-xl"
                 animate={{
                     y: [0, -10, 0],
                     rotate: [0, 180, 360],
@@ -114,12 +114,12 @@ export function ProfileImage() {
                     ease: "easeInOut",
                 }}
             >
-                <div className="w-4 h-4 bg-primary rounded-full animate-ping" />
+                <div className="w-4 h-4 bg-accent rounded-full animate-ping" />
             </motion.div>
 
             <motion.div
                 style={{ transform: "translateZ(100px)" }}
-                className="absolute -bottom-6 -left-6 w-20 h-20 bg-gradient-to-br from-purple-500/30 to-pink-500/10 backdrop-blur-md rounded-full border-2 border-white/30 flex items-center justify-center shadow-xl"
+                className="absolute -bottom-6 -left-6 w-20 h-20 bg-gradient-to-br from-accent/30 to-accent/10 backdrop-blur-md rounded-full border-2 border-white/30 flex items-center justify-center shadow-xl"
                 animate={{
                     y: [0, 10, 0],
                     rotate: [360, 180, 0],
@@ -130,13 +130,13 @@ export function ProfileImage() {
                     ease: "easeInOut",
                 }}
             >
-                <div className="w-5 h-5 bg-purple-500 rounded-full animate-pulse" />
+                <div className="w-5 h-5 bg-accent rounded-full animate-pulse" />
             </motion.div>
 
             {/* Additional floating particle */}
             <motion.div
                 style={{ transform: "translateZ(90px)" }}
-                className="absolute top-1/2 -left-4 w-12 h-12 bg-gradient-to-br from-pink-500/20 to-primary/10 backdrop-blur-md rounded-full border border-white/20 shadow-lg"
+                className="absolute top-1/2 -left-4 w-12 h-12 bg-gradient-to-br from-accent/20 to-accent/10 backdrop-blur-md rounded-full border border-white/20 shadow-lg"
                 animate={{
                     x: [-5, 5, -5],
                     y: [-10, 10, -10],
@@ -147,7 +147,7 @@ export function ProfileImage() {
                     ease: "easeInOut",
                 }}
             >
-                <div className="w-2 h-2 bg-pink-500 rounded-full m-auto mt-5 animate-pulse" />
+                <div className="w-2 h-2 bg-accent rounded-full m-auto mt-5 animate-pulse" />
             </motion.div>
         </motion.div>
     )

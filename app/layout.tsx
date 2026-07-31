@@ -1,18 +1,16 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, JetBrains_Mono } from "next/font/google"
+import { JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { Providers } from "@/components/providers"
+import { Chatbot } from "@/components/chatbot"
+import { BootSequence } from "@/components/boot-sequence"
 
-const inter = Inter({ 
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
-})
-
-const jetbrainsMono = JetBrains_Mono({ 
-  subsets: ["latin"],
-  display: "swap",
+  variable: "--font-mono",
 })
 
 export const metadata: Metadata = {
@@ -42,12 +40,16 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
       </head>
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${jetbrainsMono.variable} antialiased`}>
+        <div aria-hidden className="scanlines pointer-events-none fixed inset-0 z-[60]" />
+        <div aria-hidden className="crt-vignette pointer-events-none fixed inset-0 z-[59]" />
+        <BootSequence />
         <Providers>{children}</Providers>
+        <Chatbot />
         <Analytics />
       </body>
     </html>

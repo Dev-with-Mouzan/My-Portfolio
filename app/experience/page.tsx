@@ -5,38 +5,24 @@ import { Navigation } from "@/components/navigation"
 export default function Experience() {
   const experience = [
     {
-      role: "AI Automation Engineer",
-      company: "Freelance",
-      period: "25th Dec 2025 - Present",
-      description: "Developed advanced AI solutions using multi-agent architectures and RAG systems",
+      role: "Freelance GenAI Developer",
+      company: "Independent Freelancer",
+      period: "Dec 2025 - Present",
+      description: "Working full-time as a freelancer, mainly with local clients, delivering academic and production AI projects",
       responsibilities: [
-        "Built multi-agent systems utilizing CrewAI and LangGraph for autonomous task execution",
-        "Implemented and optimized both vector-based and vectorless RAG systems for intelligent data retrieval",
-        "Designed complex LLM-powered automation workflows to enhance productivity",
+        "Specializing in GenAI and LLM-based systems — multi-agent architectures, RAG pipelines, and agentic workflows",
+        "Delivered freelance projects including a Fake News Detection System (LangChain), AI Study Planner, Fruit Classification System, Role-Based Prompt Generator, and a Code Reviewer (LangGraph + LangChain)",
+        "Currently building a multi-agent system that autonomously generates freelance leads",
       ],
     },
     {
-      role: "AI Automation Engineer",
-      company: "Webtech",
-      period: "10th Jun 2025 - 10th Dec 2025",
-      description: "Led AI automation initiatives and prototype development",
+      role: "ML Engineer (Internship)",
+      company: "WebTech.dev, Vehari",
+      period: "Jun 2025 - Dec 2025",
+      description: "6-month internship in Machine Learning",
       responsibilities: [
-        "Architected LLM-powered automation workflows using n8n and custom agents",
-        "Designed and implemented RAG systems for intelligent document processing",
-        "Developed prompt engineering strategies for complex reasoning tasks",
-        "Built multi-agent systems for autonomous workflow orchestration",
-      ],
-    },
-    {
-      role: "AI Workflow Specialist",
-      company: "FHQ-CUPS-JGN",
-      period: "2022 - 2023",
-      description: "Deployed AI automation and managed learning initiatives",
-      responsibilities: [
-        "Implemented n8n workflows for API-based automation and AI system integration",
-        "Designed and optimized RAG pipelines for information retrieval",
-        "Performed prompt engineering for LLM fine-tuning and adaptation",
-        "Conducted research on emerging AI agent architectures and patterns",
+        "Trained machine learning models on real client datasets",
+        "Monitored model performance in production and iterated to maintain accuracy",
       ],
     },
   ]
@@ -48,7 +34,7 @@ export default function Experience() {
         <section className="max-w-4xl mx-auto px-4 py-20">
           <div className="space-y-12">
             <div>
-              <h1 className="text-4xl font-bold mb-4">Experience</h1>
+              <h1 className="font-display text-4xl font-semibold mb-4">Experience</h1>
               <p className="text-lg text-muted-foreground">
                 Specialized in GenAI systems, LLM applications, and intelligent automation
               </p>
@@ -58,7 +44,7 @@ export default function Experience() {
               {experience.map((exp, i) => (
                 <div
                   key={i}
-                  className="p-8 bg-card border border-border rounded-lg space-y-6"
+                  className="p-8 bg-card border border-border rounded-lg hover:border-accent/40 transition-colors space-y-6"
                   /* replaced slide-in-up class with inline style */
                   style={{
                     animation: "slide-in-up 0.6s ease-out forwards",
@@ -68,8 +54,8 @@ export default function Experience() {
                   <div>
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <h2 className="text-2xl font-bold">{exp.role}</h2>
-                        <p className="text-primary font-semibold">{exp.company}</p>
+                        <h2 className="font-display text-2xl font-semibold">{exp.role}</h2>
+                        <p className="text-accent font-semibold">{exp.company}</p>
                       </div>
                       <span className="text-sm text-muted-foreground whitespace-nowrap">{exp.period}</span>
                     </div>
@@ -77,7 +63,7 @@ export default function Experience() {
                   </div>
 
                   <div>
-                    <h3 className="font-semibold mb-3 text-primary">Key Responsibilities</h3>
+                    <h3 className="font-mono text-xs font-bold uppercase tracking-wider mb-3 text-accent">Key Responsibilities</h3>
                     <ul className="space-y-2">
                       {exp.responsibilities.map((resp, j) => (
                         <li key={j} className="flex gap-3">

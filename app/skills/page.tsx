@@ -2,10 +2,9 @@
 
 import { useEffect, useState } from "react"
 import { Navigation } from "@/components/navigation"
-import { useTheme } from "@/lib/theme-context"
+import { TiltCard } from "@/components/three-d"
 
 export default function SkillsPage() {
-  const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -14,24 +13,24 @@ export default function SkillsPage() {
 
   const skillCategories = [
     {
+      index: "01",
       title: "GenAI & LLMs",
       skills: ["OpenAI GPT", "Anthropic Claude", "LLaMA", "Prompt Engineering", "RAG Systems", "Fine-tuning"],
-      color: "from-cyan-500 to-blue-500",
     },
     {
+      index: "02",
       title: "AI Agents & Frameworks",
-      skills: ["LangChain", "AutoGen", "Crew AI", "Agent Orchestration", "ReAct Pattern", "Tool Integration"],
-      color: "from-purple-500 to-pink-500",
+      skills: ["LangChain", "Crew AI", "Agent Orchestration", "ReAct Pattern", "Tool Integration"],
     },
     {
+      index: "03",
       title: "Python & Backend",
-      skills: ["Python", "FastAPI", "Flask", "Django", "PostgreSQL", "MongoDB"],
-      color: "from-green-500 to-emerald-500",
+      skills: ["Python", "FastAPI", "Django", "PostgreSQL", "MongoDB"],
     },
     {
+      index: "04",
       title: "Data & ML",
       skills: ["Pandas", "NumPy", "Scikit-learn", "TensorFlow", "PyTorch", "Data Analysis"],
-      color: "from-indigo-500 to-purple-500",
     },
   ]
 
@@ -45,7 +44,7 @@ export default function SkillsPage() {
           {/* Header */}
           <div className="mb-16 text-center">
             <h1
-              className="text-4xl sm:text-5xl font-bold mb-4 gradient-text"
+              className="font-display text-4xl sm:text-5xl font-semibold mb-4 text-foreground"
               style={{
                 animation: "fadeIn 0.8s ease-out",
               }}
@@ -74,27 +73,30 @@ export default function SkillsPage() {
                 }}
               >
                 <div className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300 rounded-xl -z-10" />
-                <div className="bg-card border border-border rounded-xl p-6 backdrop-blur-sm group-hover:border-primary/50 transition-all duration-300 hover:scale-105">
-                  {/* Category Header */}
-                  <div className={`bg-gradient-to-r ${category.color} rounded-lg p-3 mb-4`}>
-                    <h2 className="text-white font-semibold text-lg">{category.title}</h2>
-                  </div>
+                <TiltCard intensity={5} className="rounded-xl">
+                  <div className="bg-card border border-border rounded-xl p-6 backdrop-blur-sm group-hover:border-accent/50 transition-all duration-300">
+                    {/* Category Header */}
+                    <div className="flex items-center justify-between bg-secondary rounded-lg p-3 mb-4">
+                      <h2 className="font-display font-semibold text-lg text-foreground">{category.title}</h2>
+                      <span className="font-mono text-xs font-bold text-accent">{category.index}</span>
+                    </div>
 
-                  {/* Skills Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {category.skills.map((skill, skillIndex) => (
-                      <span
-                        key={skill}
-                        className="px-3 py-1.5 bg-secondary text-secondary-foreground rounded-full text-sm hover:bg-primary hover:text-primary-foreground transition-all duration-200 cursor-default hover:scale-110"
-                        style={{
-                          animation: `fadeIn 0.6s ease-out ${0.4 + categoryIndex * 0.1 + skillIndex * 0.05}s backwards`,
-                        }}
-                      >
-                        {skill}
-                      </span>
-                    ))}
+                    {/* Skills Tags */}
+                    <div className="flex flex-wrap gap-2">
+                      {category.skills.map((skill, skillIndex) => (
+                        <span
+                          key={skill}
+                          className="px-3 py-1.5 bg-secondary text-secondary-foreground rounded-md text-sm border border-transparent hover:text-accent hover:border-accent/40 transition-all duration-200 cursor-default hover:scale-110"
+                          style={{
+                            animation: `fadeIn 0.6s ease-out ${0.4 + categoryIndex * 0.1 + skillIndex * 0.05}s backwards`,
+                          }}
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                </TiltCard>
               </div>
             ))}
           </div>
@@ -106,7 +108,7 @@ export default function SkillsPage() {
               animation: "slideInUp 0.8s ease-out 0.8s backwards",
             }}
           >
-            <h2 className="text-2xl font-bold mb-6 gradient-text">Proficiency Levels</h2>
+            <h2 className="font-display text-2xl font-semibold mb-6 text-foreground">Proficiency Levels</h2>
             <div className="space-y-4">
               {[
                 { name: "GenAI & LLM Development", level: 90 },
@@ -117,11 +119,11 @@ export default function SkillsPage() {
                 <div key={skill.name}>
                   <div className="flex justify-between mb-2">
                     <span className="font-medium text-foreground">{skill.name}</span>
-                    <span className="text-primary font-semibold">{skill.level}%</span>
+                    <span className="font-mono text-accent font-semibold">{skill.level}%</span>
                   </div>
                   <div className="w-full bg-secondary rounded-full h-2 overflow-hidden">
                     <div
-                      className="bg-gradient-to-r from-primary to-accent h-full rounded-full transition-all duration-1000 ease-out"
+                      className="bg-accent h-full rounded-full transition-all duration-1000 ease-out"
                       style={{
                         width: "0%",
                         animation: `slideInLeft ${0.8 + skill.level / 100}s ease-out 1s forwards`,
@@ -143,7 +145,7 @@ export default function SkillsPage() {
             <p className="text-muted-foreground mb-4">Interested in working together?</p>
             <a
               href="/contact"
-              className="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:opacity-90 transition-all duration-200 hover:scale-105"
+              className="inline-block px-8 py-3 bg-foreground text-background rounded-lg font-semibold hover:opacity-85 transition-all duration-200 hover:scale-105"
               style={{
                 animation: "scaleIn 0.6s ease-out 1.4s backwards",
               }}
