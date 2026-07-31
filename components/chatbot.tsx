@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Bot, MessageCircle, Send, X } from "lucide-react"
 import { getChatResponse, initialSuggestions, portfolioData } from "@/lib/portfolio-data"
+import { Markdown } from "@/components/markdown"
 
 interface Message {
   id: number
@@ -16,6 +17,7 @@ export function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState("")
   const [typing, setTyping] = useState(false)
+  const [showHint, setShowHint] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
   const idRef = useRef(0)
 
@@ -52,6 +54,11 @@ export function Chatbot() {
     return () => window.removeEventListener("keydown", onKey)
   }, [])
 
+  useEffect(() => {
+    const t = setTimeout(() => setShowHint(true), 2000)
+    return () => clearTimeout(t)
+  }, [])
+
   const openChat = () => {
     if (!open && messages.length === 0) {
       pushMessage(
@@ -74,20 +81,23 @@ export function Chatbot() {
     <>
       {open ? (
         <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[70] w-[calc(100vw-2rem)] max-w-sm h-[min(560px,80vh)] flex flex-col rounded-2xl border border-border bg-card text-card-foreground shadow-2xl shadow-black/20 overflow-hidden">
-          <div className="flex items-center gap-3 px-4 py-3 bg-foreground text-background">
-            <div className="relative flex items-center justify-center w-10 h-10 rounded-full bg-accent/20 text-accent">
+          <div className="flex items-center gap-3 px-4 py-3 bg-background border-b border-border text-foreground">
+            <div className="relative flex items-center justify-center w-10 h-10 rounded-full bg-accent/15 text-accent">
               <Bot size={20} />
               <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-accent border-2 border-background"></span>
             </div>
             <div className="flex-1 min-w-0">
               <p className="font-display font-semibold text-sm leading-tight tracking-tight">
-                mr@portfolio<span className="text-accent">:~$</span>
+                <span className="text-accent">mr</span>@portfolio<span className="text-accent">:~$</span>
               </p>
-              <p className="font-mono text-[10px] text-muted-foreground leading-tight">assistant ready — ask anything</p>
+              <p className="font-mono text-[10px] text-accent leading-tight">
+                assistant ready <span className="text-muted-foreground">— ask anything</span>
+                <span className="ml-0.5 inline-block w-1.5 h-3 bg-accent align-text-bottom terminal-caret"></span>
+              </p>
             </div>
             <button
               onClick={() => setOpen(false)}
-              className="p-2 rounded-lg hover:bg-accent/20 hover:text-accent transition-colors"
+              className="p-2 rounded-lg hover:bg-accent/20 hover:text-accent transition-colors text-muted-foreground"
               aria-label="Close chat"
             >
               <X size={18} />
@@ -102,8 +112,8 @@ export function Chatbot() {
                     <Bot size={14} />
                   </div>
                   <div className="max-w-[85%]">
-                    <div className="px-3.5 py-2.5 bg-secondary text-secondary-foreground rounded-2xl rounded-bl-md text-[13px] leading-relaxed whitespace-pre-line">
-                      {m.text}
+                    <div className="px-3.5 py-2.5 bg-secondary text-secondary-foreground rounded-2xl rounded-bl-md text-[13px] leading-relaxed">
+                      <Markdown>{m.text}</Markdown>
                     </div>
                     {m.suggestions && (
                       <div className="flex flex-wrap gap-1.5 mt-2">
@@ -168,14 +178,27 @@ export function Chatbot() {
           </div>
         </div>
       ) : (
-        <button
-          onClick={openChat}
-          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[70] group flex items-center gap-2 px-4 py-3.5 rounded-full bg-accent text-accent-foreground shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40 hover:-translate-y-0.5 transition-all"
-          aria-label="Open portfolio assistant chat"
-        >
-          <MessageCircle size={20} />
-          <span className="hidden sm:inline text-sm font-semibold">Ask Me Anything</span>
-        </button>
+        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[70]">
+          <button
+            onClick={openChat}
+            className="group relative flex items-center gap-2 px-4 py-3.5 rounded-full bg-accent text-accent-foreground shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40 hover:-translate-y-0.5 transition-all"
+            aria-label="Open portfolio assistant chat"
+          >
+            {showHint && (
+              <div className="absolute bottom-full right-0 mb-3 w-max max-w-[240px]">
+                <div className="px-3.5 py-2.5 bg-card border border-accent/50 rounded-lg rounded-br-none text-xs text-foreground shadow-xl shadow-accent/15 leading-relaxed">
+                  <span className="text-accent font-semibold">$</span> hi! I'm <span className="text-accent font-semibold">mr_ai</span> — ask me anything about Mouzan
+                  <span className="ml-0.5 inline-block w-1.5 h-3 bg-accent align-text-bottom terminal-caret"></span>
+                </div>
+                <div className="absolute -bottom-1 right-4 w-2.5 h-2.5 bg-card border-b border-r border-accent/50 rotate-45"></div>
+              </div>
+            )}
+            <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-foreground text-background text-[10px] font-bold z-10">1</span>
+            <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-accent animate-ping"></span>
+            <MessageCircle size={20} />
+            <span className="hidden sm:inline text-sm font-semibold">Ask Me Anything</span>
+          </button>
+        </div>
       )}
     </>
   )

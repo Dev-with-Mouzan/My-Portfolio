@@ -140,7 +140,7 @@ export default function Home() {
     setStatus("loading")
 
     try {
-      const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -356,31 +356,33 @@ export default function Home() {
     <>
       <Navigation />
 
-      <motion.div
-        initial={{ opacity: 0, x: -30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6, delay: 0.5 }}
-        className="hidden lg:flex fixed left-6 xl:left-10 top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-5"
-      >
-        <span className="w-px h-16 bg-gradient-to-b from-transparent to-accent/70"></span>
-        {socialLinks.map((link, i) => (
-          <motion.a
-            key={link.name}
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, x: -24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.8 + i * 0.12 }}
-            whileHover={{ scale: 1.12, y: -3 }}
-            className="relative p-3 bg-card border border-accent/30 text-foreground hover:text-accent rounded-lg transition-shadow shadow-[0_0_12px_rgba(217,119,87,0.12)] hover:shadow-[0_0_24px_rgba(217,119,87,0.45)]"
-            aria-label={link.name}
-          >
-            {link.icon}
-          </motion.a>
-        ))}
-        <span className="w-px h-16 bg-gradient-to-b from-accent/70 to-transparent"></span>
-      </motion.div>
+      <div className="hidden lg:block fixed z-40 lg:left-6 xl:left-10 lg:top-1/2 lg:-translate-y-1/2">
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="flex flex-col items-center gap-4"
+        >
+          <span className="w-px h-16 bg-gradient-to-b from-transparent to-accent/70"></span>
+          {socialLinks.map((link, i) => (
+            <motion.a
+              key={link.name}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, x: -24 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.8 + i * 0.12 }}
+              whileHover={{ scale: 1.12, y: -3 }}
+              className="relative p-3 bg-card border border-accent/30 text-foreground hover:text-accent rounded-lg transition-shadow shadow-[0_0_12px_rgba(217,119,87,0.12)] hover:shadow-[0_0_24px_rgba(217,119,87,0.45)]"
+              aria-label={link.name}
+            >
+              {link.icon}
+            </motion.a>
+          ))}
+          <span className="w-px h-16 bg-gradient-to-b from-accent/70 to-transparent"></span>
+        </motion.div>
+      </div>
 
       <main className="min-h-screen">
         <section id="hero" className="min-h-screen relative overflow-hidden">

@@ -178,11 +178,11 @@ const projectsReply = (): ChatReply => ({
 })
 
 const educationReply = (): ChatReply => ({
-  text: `Education:\n\n• ${portfolioData.education.degree}\n• ${portfolioData.education.university}\n• ${portfolioData.education.semester}\n• CGPA: ${portfolioData.education.cgpa}\n\nHe is specializing in Generative AI engineering while maintaining a strong academic record.`,
+  text: `Education:\n\n- ${portfolioData.education.degree}\n- ${portfolioData.education.university}\n- ${portfolioData.education.semester}\n- CGPA: ${portfolioData.education.cgpa}\n\nHe is specializing in Generative AI engineering while maintaining a strong academic record.`,
 })
 
 const contactReply = (): ChatReply => ({
-  text: `You can reach Mouzan at:\n\n• Email: ${portfolioData.email}\n• Phone: ${portfolioData.phone}\n• GitHub: ${portfolioData.github.url}\n• LinkedIn: ${portfolioData.socials.linkedin}\n• Twitter/X: ${portfolioData.socials.twitter}\n\nThe contact form on this site works too.`,
+  text: `You can reach Mouzan at:\n\n- Email: ${portfolioData.email}\n- Phone: ${portfolioData.phone}\n- GitHub: ${portfolioData.github.url}\n- LinkedIn: ${portfolioData.socials.linkedin}\n- Twitter/X: ${portfolioData.socials.twitter}\n\nThe contact form on this site works too.`,
   suggestions: ["Hire Me", "Resume", "Location"],
 })
 
@@ -201,17 +201,17 @@ const locationReply = (): ChatReply => ({
 })
 
 const githubReply = (): ChatReply => ({
-  text: `Mouzan's GitHub is ${portfolioData.github.url} — ${portfolioData.github.repos}+ public repositories.\n\nHighlights:\n• CareerCopilot_AI\n• FounderLens_AI\n\nYou can also ask me about his projects for more detail.`,
+  text: `Mouzan's GitHub is ${portfolioData.github.url} — ${portfolioData.github.repos}+ public repositories.\n\nHighlights:\n- CareerCopilot_AI\n- FounderLens_AI\n\nYou can also ask me about his projects for more detail.`,
   suggestions: ["Projects", "Contact"],
 })
 
 const focusReply = (): ChatReply => ({
-  text: `Mouzan's main focus areas:\n\n${portfolioData.focusAreas.map((f) => `• ${f}`).join("\n")}\n\nAsk me about RAG systems, agent orchestration, or LLM fine-tuning.`,
+  text: `Mouzan's main focus areas:\n\n${portfolioData.focusAreas.map((f) => `- ${f}`).join("\n")}\n\nAsk me about RAG systems, agent orchestration, or LLM fine-tuning.`,
   suggestions: ["What are his skills?", "Projects", "Experience"],
 })
 
 const funFactReply = (): ChatReply => ({
-  text: `A few things you may not know:\n\n${portfolioData.funFacts.map((f) => `• ${f}`).join("\n")}`,
+  text: `A few things you may not know:\n\n${portfolioData.funFacts.map((f) => `- ${f}`).join("\n")}`,
   suggestions: ["Who is Mouzan?", "Projects"],
 })
 
@@ -221,7 +221,7 @@ const greetingReply = (): ChatReply => ({
 })
 
 const helpReply = (): ChatReply => ({
-  text: `You can ask me things like:\n\n• "Who is Mouzan?"\n• "What are his skills?"\n• "Tell me about his projects"\n• "Work experience"\n• "Contact information"\n• "Is he available for hire?"\n• "Resume" or "GitHub"`,
+  text: `You can ask me things like:\n\n- "Who is Mouzan?"\n- "What are his skills?"\n- "Tell me about his projects"\n- "Work experience"\n- "Contact information"\n- "Is he available for hire?"\n- "Resume" or "GitHub"`,
   suggestions: initialSuggestions,
 })
 

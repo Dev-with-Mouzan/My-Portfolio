@@ -31,10 +31,10 @@ export function BootSequence() {
   useEffect(() => {
     if (!visible) return
     if (count < BOOT_LINES.length) {
-      const t = setTimeout(() => setCount((c) => c + 1), 130)
+      const t = setTimeout(() => setCount((c) => c + 1), 200)
       return () => clearTimeout(t)
     }
-    const t = setTimeout(() => setFading(true), 400)
+    const t = setTimeout(() => setFading(true), 300)
     return () => clearTimeout(t)
   }, [visible, count])
 
