@@ -50,6 +50,16 @@ export default function Home() {
   const projectsScrollRef = useRef<HTMLDivElement>(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // One card per step on mobile, two on larger screens
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)")
+    const update = () => setIsMobile(mq.matches)
+    update()
+    mq.addEventListener("change", update)
+    return () => mq.removeEventListener("change", update)
+  }, [])
 
   const checkProjectsScroll = useCallback(() => {
     const el = projectsScrollRef.current
@@ -62,7 +72,8 @@ export default function Home() {
     const el = projectsScrollRef.current
     if (!el) return
     const cardWidth = el.querySelector<HTMLElement>("[data-card]")?.offsetWidth || 420
-    const scrollAmount = (cardWidth + 32) * 2
+    const gap = isMobile ? 24 : 32
+    const scrollAmount = (cardWidth + gap) * (isMobile ? 1 : 2)
     el.scrollBy({ left: direction === "left" ? -scrollAmount : scrollAmount, behavior: "smooth" })
     setTimeout(checkProjectsScroll, 400)
   }
@@ -73,7 +84,8 @@ export default function Home() {
       const el = projectsScrollRef.current
       if (!el) return
       const cardWidth = el.querySelector<HTMLElement>("[data-card]")?.offsetWidth || 420
-      const scrollAmount = (cardWidth + 32) * 2
+      const gap = isMobile ? 24 : 32
+      const scrollAmount = (cardWidth + gap) * (isMobile ? 1 : 2)
       const atEnd = el.scrollLeft >= el.scrollWidth - el.clientWidth - 10
       if (atEnd) {
         el.scrollTo({ left: 0, behavior: "smooth" })
@@ -83,7 +95,7 @@ export default function Home() {
       setTimeout(checkProjectsScroll, 400)
     }, 4000)
     return () => clearInterval(interval)
-  }, [checkProjectsScroll])
+  }, [checkProjectsScroll, isMobile])
   const { scrollYProgress: timelineProgress } = useScroll({
     target: timelineRef,
     offset: ["start 0.75", "end 0.55"],
@@ -729,7 +741,7 @@ export default function Home() {
             <div
               ref={projectsScrollRef}
               onScroll={checkProjectsScroll}
-              className="flex gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 pl-[calc(50%-210px)] pr-[calc(50%-210px)] scrollbar-hide"
+              className="flex gap-6 sm:gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 pl-[max(1rem,calc(50%-43vw))] pr-[max(1rem,calc(50%-43vw))] sm:pl-[calc(50%-210px)] sm:pr-[calc(50%-210px)] scrollbar-hide"
               style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
               {projects.map((project, i) => {
@@ -738,7 +750,7 @@ export default function Home() {
                   <div
                     key={i}
                     data-card
-                    className="group relative rounded-3xl overflow-visible transition-all duration-500 snap-center flex-shrink-0 w-[420px] h-[500px]"
+                    className="group relative rounded-3xl overflow-visible transition-all duration-500 snap-center flex-shrink-0 w-[min(420px,86vw)] h-[540px] sm:h-[500px]"
                     style={{
                       background: "rgb(26 26 24)",
                       border: "1px solid rgba(55,53,50,1)",
@@ -748,10 +760,10 @@ export default function Home() {
                     {/* Purple glow at bottom */}
                     <div className="absolute -bottom-4 left-0 right-0 h-40 pointer-events-none opacity-60 rounded-b-3xl" style={{ background: "linear-gradient(to top, rgba(108,60,239,0.2), rgba(37,99,235,0.08), transparent)" }} />
 
-                    <div className="relative z-10 p-7 pb-0 flex flex-col">
+                    <div className="relative z-10 p-5 sm:p-7 pb-0 flex flex-col">
                       {/* Top row: Number + GitHub/Live buttons */}
                       <div className="flex items-start justify-between mb-8">
-                        <span className="font-display text-6xl sm:text-7xl font-black leading-none text-foreground/95 tracking-tighter">
+                        <span className="font-display text-5xl sm:text-7xl font-black leading-none text-foreground/95 tracking-tighter">
                           {num}
                         </span>
                         <div className="flex items-center gap-2 mt-1">
@@ -779,7 +791,7 @@ export default function Home() {
                       </p>
 
                       {/* Full project screenshot at bottom */}
-                      <div className="relative w-[calc(100%+56px)] -ml-7 flex-1 min-h-[220px] overflow-hidden rounded-b-2xl border-t border-white/[0.06] bg-black/30">
+                      <div className="relative w-[calc(100%+40px)] -ml-5 sm:w-[calc(100%+56px)] sm:-ml-7 flex-1 min-h-[180px] overflow-hidden rounded-b-2xl border-t border-white/[0.06] bg-black/30">
                         <Image
                           src={project.image}
                           alt={project.title}
@@ -796,7 +808,7 @@ export default function Home() {
 
             {/* Dot indicators */}
             <div className="flex items-center justify-center gap-2 mt-6">
-              {Array.from({ length: Math.ceil(projects.length / 2) }).map((_, i) => (
+              {Array.from({ length: isMobile ? projects.length : Math.ceil(projects.length / 2) }).map((_, i) => (
                 <div key={i} className="w-2 h-2 rounded-full bg-muted-foreground/30" />
               ))}
             </div>

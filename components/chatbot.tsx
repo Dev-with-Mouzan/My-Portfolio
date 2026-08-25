@@ -18,8 +18,13 @@ export function Chatbot() {
   const [input, setInput] = useState("")
   const [typing, setTyping] = useState(false)
   const [showHint, setShowHint] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
   const idRef = useRef(0)
+
+  // Render only on the client so browser extensions that mutate the DOM
+  // before hydration can't cause a server/client attribute mismatch.
+  useEffect(() => setMounted(true), [])
 
   const pushMessage = (role: "user" | "bot", text: string, suggestions?: string[]) => {
     idRef.current += 1
@@ -76,6 +81,8 @@ export function Chatbot() {
       send(input)
     }
   }
+
+  if (!mounted) return null
 
   return (
     <>
