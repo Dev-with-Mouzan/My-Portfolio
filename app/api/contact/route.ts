@@ -1,9 +1,13 @@
 import { NextResponse } from "next/server"
 import { Resend } from "resend"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function POST(request: Request) {
+  const apiKey = process.env.RESEND_API_KEY
+  if (!apiKey) {
+    return NextResponse.json({ error: "Email service is not configured." }, { status: 503 })
+  }
+  const resend = new Resend(apiKey)
+
   try {
     const body = await request.json()
     const name = typeof body.name === "string" ? body.name.trim().slice(0, 120) : ""

@@ -1,8 +1,11 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { Navigation } from "@/components/navigation"
+import { Particles } from "@/components/particles"
+import { CustomCursor } from "@/components/custom-cursor"
+import Image from "next/image"
 import { ArrowRight, Download, MapPin, GraduationCap, Code2, Brain, Zap, ArrowUp, Phone } from "lucide-react"
 import { Spinner } from "@/components/spinner"
 import { FloatingShapes, ScrollCube, Reveal3D, TiltCard } from "@/components/three-d"
@@ -44,6 +47,43 @@ export default function Home() {
   const heroY = useTransform(scrollY, [0, 600], [0, 140])
   const heroOpacity = useTransform(scrollY, [0, 420], [1, 0])
   const timelineRef = useRef<HTMLDivElement>(null)
+  const projectsScrollRef = useRef<HTMLDivElement>(null)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(true)
+
+  const checkProjectsScroll = useCallback(() => {
+    const el = projectsScrollRef.current
+    if (!el) return
+    setCanScrollLeft(el.scrollLeft > 10)
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10)
+  }, [])
+
+  const scrollProjects = (direction: "left" | "right") => {
+    const el = projectsScrollRef.current
+    if (!el) return
+    const cardWidth = el.querySelector<HTMLElement>("[data-card]")?.offsetWidth || 420
+    const scrollAmount = (cardWidth + 32) * 2
+    el.scrollBy({ left: direction === "left" ? -scrollAmount : scrollAmount, behavior: "smooth" })
+    setTimeout(checkProjectsScroll, 400)
+  }
+
+  // Auto-scroll every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const el = projectsScrollRef.current
+      if (!el) return
+      const cardWidth = el.querySelector<HTMLElement>("[data-card]")?.offsetWidth || 420
+      const scrollAmount = (cardWidth + 32) * 2
+      const atEnd = el.scrollLeft >= el.scrollWidth - el.clientWidth - 10
+      if (atEnd) {
+        el.scrollTo({ left: 0, behavior: "smooth" })
+      } else {
+        el.scrollBy({ left: scrollAmount, behavior: "smooth" })
+      }
+      setTimeout(checkProjectsScroll, 400)
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [checkProjectsScroll])
   const { scrollYProgress: timelineProgress } = useScroll({
     target: timelineRef,
     offset: ["start 0.75", "end 0.55"],
@@ -68,7 +108,7 @@ export default function Home() {
   }, [statsAnimated])
 
   const animateStats = () => {
-    const targets = { roles: 2, projects: 7, cgpa: 3.85, years: 1 }
+    const targets = { roles: 2, projects: 6, cgpa: 3.85, years: 1 }
     const duration = 1500
     const steps = 60
     const interval = duration / steps
@@ -223,66 +263,64 @@ export default function Home() {
 
   const projects = [
     {
+      title: "DevPilot AI",
+      category: "AI Assistant",
+      image: "/Devpilotai.PNG",
+      github: "https://github.com/Dev-with-Mouzan/DevPilot_Ai.git",
+      live: "https://www.devpliotai.site/",
+      description:
+        "An intelligent AI-powered development assistant that helps developers with code generation, debugging, and project management.",
+      tech: ["Python", "FastAPI", "LLMs", "AI"],
+    },
+    {
       title: "CareerCopilot AI",
       category: "Multi-Agent Systems",
-      description:
-        "Multi-agent career assistant built with CrewAI and FastAPI using a mixed-LLM setup — Groq (Llama-3.1) for fast tool-calling web scraping and Gemini for deep ATS analysis and strategic reasoning. User uploads a resume and gets scored matches, ATS feedback, and a learning plan.",
-      pipeline: "resume upload → job-hunter agent scrapes listings → ATS-analyst agent scores resume (Pydantic output) → career-strategist builds learning plan via TF-IDF retrieval → chatbot with short-term memory.",
-      tech: ["CrewAI", "FastAPI", "Groq (Llama-3.1)", "Gemini", "Pydantic", "Python"],
+      image: "/careercopilot.PNG",
       github: "https://github.com/Dev-with-Mouzan/CareerCopilot_AI.git",
+      live: "http://54.206.89.234:8000/",
+      description:
+        "Multi-agent career assistant built with CrewAI and FastAPI using a mixed-LLM setup — Groq (Llama-3.1) for fast tool-calling web scraping and Gemini for deep ATS analysis and strategic reasoning.",
+      tech: ["CrewAI", "FastAPI", "Groq (Llama-3.1)", "Gemini", "Pydantic", "Python"],
     },
     {
       title: "FounderLens AI",
       category: "Multi-Agent Systems",
-      description:
-        "Multi-agent business analysis system built with CrewAI and FastAPI. A sequential 6-agent pipeline (intake, insight, conflict, planning, simulation, recovery) processes business data to generate insights on risk, market trends, growth strategies, and outcome simulations.",
-      pipeline: "CSV/PDF/website ingestion → intake → insight → conflict detection → planning → simulation → recovery → Supabase persistence.",
-      tech: ["CrewAI", "FastAPI", "LangChain", "Supabase", "Python"],
+      image: "/founderlens ai.PNG",
       github: "https://github.com/Dev-with-Mouzan/FounderLens_AI.git",
-      demo: "https://founderai-production-a4e4.up.railway.app/",
-      demoText: "Live API ↗",
+      live: "https://founder-lens-ai.vercel.app/",
+      description:
+        "Multi-agent business analysis system built with CrewAI and FastAPI. A sequential 6-agent pipeline processes business data to generate insights on risk, market trends, growth strategies, and outcome simulations.",
+      tech: ["CrewAI", "FastAPI", "LangChain", "Supabase", "Python"],
     },
     {
-      title: "Fake News Detection System",
-      category: "GenAI",
+      title: "Literal AI",
+      category: "AI Application",
+      image: "/Literal_ai.PNG",
+      github: "https://github.com/Dev-with-Mouzan/Litera_Ai.git",
+      live: "http://3.26.219.151/",
       description:
-        "Freelance academic project (LangChain) that classifies news articles as real or fake using LLM-based analysis and confidence scoring.",
-      pipeline: "text ingestion → preprocessing → LLM classification (LangChain) → confidence scoring.",
+        "An AI-powered platform that leverages language models for intelligent text analysis and processing capabilities.",
+      tech: ["Python", "LLMs", "AI"],
+    },
+    {
+      title: "RepoXray",
+      category: "Developer Tool",
+      image: "/RepoXray.PNG",
+      github: "https://github.com/Dev-with-Mouzan/RepoXray.git",
+      live: "https://repo-xray-peach.vercel.app/",
+      description:
+        "A tool that analyzes and provides deep insights into GitHub repositories, helping developers understand codebases quickly and efficiently.",
+      tech: ["Python", "GitHub API", "LLMs", "AI"],
+    },
+    {
+      title: "Fake News Detection",
+      category: "GenAI",
+      image: "/Facknews_dector.PNG",
+      github: "https://github.com/Dev-with-Mouzan/fake-news-detection",
+      live: "https://fake-news-detection-rust-chi.vercel.app/",
+      description:
+        "Freelance academic project that classifies news articles as real or fake using LLM-based analysis built with LangChain. Includes confidence scoring and text preprocessing pipeline.",
       tech: ["Python", "LangChain", "LLMs", "NLP"],
-      github: "https://github.com/Dev-with-Mouzan",
-    },
-    {
-      title: "Code Reviewer",
-      category: "Agentic AI",
-      description:
-        "Agentic code review system built with LangGraph + LangChain that analyzes code, identifies bugs and anti-patterns, and suggests concrete improvements.",
-      pipeline: "code ingestion → review agent (LangGraph) → issue detection → actionable suggestions.",
-      tech: ["Python", "LangGraph", "LangChain", "LLMs"],
-      github: "https://github.com/Dev-with-Mouzan",
-    },
-    {
-      title: "AI Study Planner",
-      category: "GenAI",
-      description:
-        "Intelligent study planner that generates personalized study schedules and revision plans based on subjects, deadlines, and available time.",
-      tech: ["Python", "LLMs", "LangChain"],
-      github: "https://github.com/Dev-with-Mouzan",
-    },
-    {
-      title: "Fruit Classification System",
-      category: "Computer Vision",
-      description:
-        "Deep learning image classification system that recognizes fruit types — a complete CNN-based classification project.",
-      tech: ["Python", "TensorFlow", "Keras", "CNN"],
-      github: "https://github.com/Dev-with-Mouzan",
-    },
-    {
-      title: "Role-Based Prompt Generator",
-      category: "Prompt Engineering",
-      description:
-        "Tool that generates tailored prompts based on the user's role and context, making LLM usage more effective across professional scenarios.",
-      tech: ["Python", "Prompt Engineering", "LLMs"],
-      github: "https://github.com/Dev-with-Mouzan",
     },
   ]
 
@@ -355,6 +393,8 @@ export default function Home() {
   return (
     <>
       <Navigation />
+      <CustomCursor />
+      <Particles />
 
       <div className="hidden lg:block fixed z-40 lg:left-6 xl:left-10 lg:top-1/2 lg:-translate-y-1/2">
         <motion.div
@@ -644,68 +684,122 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="projects" className="max-w-6xl mx-auto px-4 py-20 border-t border-border">
-          {sectionHeading("04", "Featured Projects")}
+        <section id="projects" className="py-20 border-t border-border relative">
+          {/* Background glow effects */}
+          <div className="absolute top-20 left-1/4 w-[600px] h-[600px] bg-[#6c3cef]/8 rounded-full blur-[200px] pointer-events-none" />
+          <div className="absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-[#2563eb]/6 rounded-full blur-[180px] pointer-events-none" />
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {projects.map((project, i) => (
-              <Reveal3D key={i} delay={i * 0.1} className="h-full">
-              <TiltCard
-                intensity={5}
-                className="h-full rounded-lg"
+          <div className="max-w-7xl mx-auto px-4 relative z-10">
+            <div className="flex flex-col items-center text-center mb-14" data-aos="fade-up">
+              <p className="eyebrow mb-3">
+                [04] // Featured Projects
+              </p>
+              <h2 className="font-display text-4xl md:text-5xl font-semibold text-foreground tracking-tight">Featured Projects</h2>
+              <div className="mt-5 h-px w-16 bg-accent"></div>
+              <p className="text-lg text-muted-foreground max-w-2xl mt-4">Building intelligent systems that combine LLMs, RAG, and automation.</p>
+            </div>
+
+            {/* Navigation buttons */}
+            <div className="flex items-center justify-end gap-3 mb-6">
+              <button
+                onClick={() => scrollProjects("left")}
+                disabled={!canScrollLeft}
+                className={`p-3 rounded-xl border transition-all ${
+                  canScrollLeft
+                    ? "border-white/[0.08] bg-white/[0.04] text-foreground hover:text-accent hover:border-accent/40 hover:bg-accent/10"
+                    : "border-white/[0.04] bg-white/[0.02] text-foreground/20 cursor-not-allowed"
+                }`}
               >
-              <div
-                className="group relative bg-card border border-border rounded-lg p-7 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-accent/5 hover:border-accent/40 overflow-hidden flex flex-col h-full"
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+              </button>
+              <button
+                onClick={() => scrollProjects("right")}
+                disabled={!canScrollRight}
+                className={`p-3 rounded-xl border transition-all ${
+                  canScrollRight
+                    ? "border-white/[0.08] bg-white/[0.04] text-foreground hover:text-accent hover:border-accent/40 hover:bg-accent/10"
+                    : "border-white/[0.04] bg-white/[0.02] text-foreground/20 cursor-not-allowed"
+                }`}
               >
-                <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-accent/5 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-accent/10 transition-colors duration-500 pointer-events-none"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><polyline points="12 5 19 12 12 19"/></svg>
+              </button>
+            </div>
 
-                <div className="relative z-10 flex flex-col h-full">
-                  <div className="flex justify-between items-start mb-6">
-                    <span className="inline-flex px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-wider rounded-md border border-accent/30 bg-accent/10 text-accent">
-                      {project.category}
-                    </span>
-                    {project.inProgress && (
-                      <span className="text-xs text-accent bg-accent/10 border border-accent/30 px-3 py-1 rounded-md font-medium flex items-center gap-1">
-                        <Zap size={12} /> In Progress
-                      </span>
-                    )}
+            {/* Scrollable track */}
+            <div
+              ref={projectsScrollRef}
+              onScroll={checkProjectsScroll}
+              className="flex gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 pl-[calc(50%-210px)] pr-[calc(50%-210px)] scrollbar-hide"
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            >
+              {projects.map((project, i) => {
+                const num = String(i + 1).padStart(2, "0")
+                return (
+                  <div
+                    key={i}
+                    data-card
+                    className="group relative rounded-3xl overflow-visible transition-all duration-500 snap-center flex-shrink-0 w-[420px] h-[500px]"
+                    style={{
+                      background: "rgb(26 26 24)",
+                      border: "1px solid rgba(55,53,50,1)",
+                      boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
+                    }}
+                  >
+                    {/* Purple glow at bottom */}
+                    <div className="absolute -bottom-4 left-0 right-0 h-40 pointer-events-none opacity-60 rounded-b-3xl" style={{ background: "linear-gradient(to top, rgba(108,60,239,0.2), rgba(37,99,235,0.08), transparent)" }} />
+
+                    <div className="relative z-10 p-7 pb-0 flex flex-col">
+                      {/* Top row: Number + GitHub/Live buttons */}
+                      <div className="flex items-start justify-between mb-8">
+                        <span className="font-display text-6xl sm:text-7xl font-black leading-none text-foreground/95 tracking-tighter">
+                          {num}
+                        </span>
+                        <div className="flex items-center gap-2 mt-1">
+                          <a href={project.github} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 text-[11px] font-mono font-bold uppercase tracking-wider bg-white/[0.04] border border-white/[0.08] text-foreground hover:text-accent hover:border-accent/40 hover:bg-accent/10 rounded-lg transition-all">
+                            GitHub
+                          </a>
+                          <a href={project.live} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 text-[11px] font-mono font-bold uppercase tracking-wider bg-white/[0.04] border border-white/[0.08] text-foreground hover:text-accent hover:border-accent/40 hover:bg-accent/10 rounded-lg transition-all">
+                            Live Demo
+                          </a>
+                        </div>
+                      </div>
+
+                      {/* Title + Technologies */}
+                      <div className="mb-4">
+                        <h3 className="font-display text-2xl sm:text-[26px] font-bold text-foreground mb-2 leading-tight">
+                          {project.title}
+                        </h3>
+                        <p className="text-[13px] text-muted-foreground font-medium mb-1">Technologies used</p>
+                        <p className="text-[13px] text-muted-foreground/60">{project.tech.join(", ")}</p>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-sm text-muted-foreground/70 mb-6 leading-relaxed line-clamp-2">
+                        {project.description}
+                      </p>
+
+                      {/* Full project screenshot at bottom */}
+                      <div className="relative w-[calc(100%+56px)] -ml-7 flex-1 min-h-[220px] overflow-hidden rounded-b-2xl border-t border-white/[0.06] bg-black/30">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-contain object-top p-3"
+                          sizes="(max-width: 768px) 500px, 500px"
+                        />
+                      </div>
+                    </div>
                   </div>
+                )
+              })}
+            </div>
 
-                  <h3 className="font-display text-2xl font-semibold text-foreground mb-4">{project.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed mb-6">{project.description}</p>
-
-                  {project.pipeline && (
-                    <div className="mb-6 p-4 rounded-lg bg-secondary/50 border border-border text-sm text-muted-foreground leading-relaxed">
-                      <span className="font-mono text-xs font-bold text-accent mb-1 flex items-center gap-2">
-                        <svg className="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg> pipeline:
-                      </span>
-                      {project.pipeline}
-                    </div>
-                  )}
-
-                  <div className="mt-auto">
-                    <div className="flex flex-wrap gap-2 mb-8">
-                      {project.tech.map((t) => (
-                        <span key={t} className="px-3 py-1.5 bg-secondary/50 border border-border text-foreground text-xs rounded-md font-medium transition-colors">{t}</span>
-                      ))}
-                    </div>
-
-                    <div className="flex items-center gap-6 pt-5 border-t border-border">
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-foreground flex items-center gap-2 hover:text-accent transition-colors">
-                        <Code2 size={16} /> Source Code
-                      </a>
-                      {project.demoText && (
-                        <a href={project.demo || "#"} className="text-sm font-semibold flex items-center gap-2 hover:translate-x-1 transition-all text-accent">
-                          {project.demoText} {project.demoText !== "Coming Soon" && <ArrowRight size={14} />}
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              </TiltCard>
-              </Reveal3D>
-            ))}
+            {/* Dot indicators */}
+            <div className="flex items-center justify-center gap-2 mt-6">
+              {Array.from({ length: Math.ceil(projects.length / 2) }).map((_, i) => (
+                <div key={i} className="w-2 h-2 rounded-full bg-muted-foreground/30" />
+              ))}
+            </div>
           </div>
         </section>
 
@@ -875,27 +969,86 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className="border-t border-border bg-card">
-          <div className="max-w-6xl mx-auto px-4 py-8">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-              <div className="flex flex-col items-center md:items-start gap-2">
+        <footer className="border-t border-border relative overflow-hidden">
+          {/* Subtle glow */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            {/* Top section */}
+            <div className="py-16 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+              {/* Brand */}
+              <div className="space-y-4">
                 <div className="flex items-center gap-2">
-                  <span className="font-display text-xl font-semibold text-foreground">MR<span className="text-accent">.</span></span>
-                  <span className="text-muted-foreground">|</span>
-                  <span className="text-muted-foreground">Mouzan Raza</span>
+                  <span className="font-display text-2xl font-bold text-foreground">~<span className="text-accent">/</span>mr<span className="text-accent">_</span></span>
                 </div>
-                <p className="text-sm text-muted-foreground">
-                  © {new Date().getFullYear()} Mouzan Raza. All rights reserved.
+                <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+                  Building intelligent AI systems with LLMs, RAG, and multi-agent architectures.
                 </p>
+                <div className="flex items-center gap-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-60"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                  </span>
+                  <span className="text-xs text-muted-foreground font-mono">Available for work</span>
+                </div>
               </div>
-              <div className="flex items-center gap-4">
+
+              {/* Quick links */}
+              <div className="space-y-4">
+                <h3 className="font-display text-sm font-bold uppercase tracking-widest text-foreground">Navigation</h3>
+                <div className="flex flex-col gap-2">
+                  {[
+                    { href: "#hero", label: "Home" },
+                    { href: "#about", label: "About" },
+                    { href: "#skills", label: "Skills" },
+                    { href: "#projects", label: "Projects" },
+                    { href: "#experience", label: "Experience" },
+                    { href: "#contact", label: "Contact" },
+                  ].map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      className="text-sm text-muted-foreground hover:text-accent transition-colors w-fit"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Contact */}
+              <div className="space-y-4">
+                <h3 className="font-display text-sm font-bold uppercase tracking-widest text-foreground">Get in Touch</h3>
+                <div className="flex flex-col gap-3">
+                  <a href="mailto:mouzan.ai.dev@gmail.com" className="text-sm text-muted-foreground hover:text-accent transition-colors font-mono">
+                    mouzan.ai.dev@gmail.com
+                  </a>
+                  <a href="tel:+923114216514" className="text-sm text-muted-foreground hover:text-accent transition-colors font-mono">
+                    +92-311-4216514
+                  </a>
+                  <p className="text-sm text-muted-foreground">
+                    Burewala, Pakistan
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="h-px bg-border" />
+
+            {/* Bottom section */}
+            <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <p className="text-xs text-muted-foreground/60 font-mono">
+                © {new Date().getFullYear()} Mouzan Raza. All rights reserved.
+              </p>
+              <div className="flex items-center gap-1">
                 {socialLinks.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 text-foreground hover:text-accent hover:bg-secondary rounded-lg transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+                    className="p-2 text-muted-foreground hover:text-accent transition-colors rounded-lg"
                     aria-label={link.name}
                   >
                     {link.icon}

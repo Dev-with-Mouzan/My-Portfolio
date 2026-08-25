@@ -132,3 +132,12 @@
 .terminal-caret {
   animation: terminal-blink 1.1s steps(2) infinite;
 }
+
+@media (min-width: 1024px) {
+  html, body, * {
+    cursor: none !important;
+  }
+  a, button, input, textarea, select, [role="button"] {
+    cursor: none !important;
+  }
+}
