@@ -120,7 +120,7 @@ export default function Home() {
   }, [statsAnimated])
 
   const animateStats = () => {
-    const targets = { roles: 2, projects: 6, cgpa: 3.85, years: 1 }
+    const targets = { roles: 2, projects: 7, cgpa: 3.85, years: 1 }
     const duration = 1500
     const steps = 60
     const interval = duration / steps
@@ -329,10 +329,20 @@ export default function Home() {
       category: "GenAI",
       image: "/Facknews_dector.PNG",
       github: "https://github.com/Dev-with-Mouzan/fake-news-detection",
-      live: "https://fake-news-detection-rust-chi.vercel.app/",
+      live: "https://fake-news-detection-git-main-mouzan-razas-projects.vercel.app/",
       description:
         "Freelance academic project that classifies news articles as real or fake using LLM-based analysis built with LangChain. Includes confidence scoring and text preprocessing pipeline.",
       tech: ["Python", "LangChain", "LLMs", "NLP"],
+    },
+    {
+      title: "Lead Hunter",
+      category: "AI Agent",
+      image: "/LeadHunter.PNG",
+      github: "https://github.com/Dev-with-Mouzan/Lead_Hunter.git",
+      live: "https://lead-hunter-17qnbxjj0-mouzan-razas-projects.vercel.app/",
+      description:
+        "AI-powered lead generation agent that autonomously discovers, qualifies, and compiles targeted business leads using intelligent web research.",
+      tech: ["Python", "AI Agents", "LLMs", "Next.js"],
     },
   ]
 

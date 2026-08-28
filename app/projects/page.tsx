@@ -62,10 +62,20 @@ const projects = [
     category: "GenAI",
     image: "/Facknews_dector.PNG",
     github: "https://github.com/Dev-with-Mouzan/fake-news-detection",
-    live: "https://fake-news-detection-rust-chi.vercel.app/",
+    live: "https://fake-news-detection-git-main-mouzan-razas-projects.vercel.app/",
     description:
       "Classifies news articles as real or fake using LLM-based analysis built with LangChain.",
     tech: ["Python", "LangChain", "LLMs", "NLP"],
+  },
+  {
+    title: "Lead Hunter",
+    category: "AI Agent",
+    image: "/LeadHunter.PNG",
+    github: "https://github.com/Dev-with-Mouzan/Lead_Hunter.git",
+    live: "https://lead-hunter-17qnbxjj0-mouzan-razas-projects.vercel.app/",
+    description:
+      "AI-powered lead generation agent that autonomously discovers, qualifies, and compiles targeted business leads using intelligent web research.",
+    tech: ["Python", "AI Agents", "LLMs", "Next.js"],
   },
 ]
 
@@ -170,7 +180,7 @@ export default function Projects() {
           <div
             ref={scrollRef}
             onScroll={checkScroll}
-            className="flex gap-6 sm:gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 pl-[max(1rem,calc(50%-43vw))] pr-[max(1rem,calc(50%-43vw))] sm:pl-[calc(50%-210px)] sm:pr-[calc(50%-210px)] scrollbar-hide"
+            className="flex gap-6 sm:gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 pl-[max(1rem,calc(50%-43vw))] sm:pl-[calc(50%-210px)] scrollbar-hide"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {projects.map((project, i) => {
@@ -247,6 +257,8 @@ export default function Projects() {
                 </div>
               )
             })}
+            {/* Trailing spacer — gives the last card enough room to snap to center */}
+            <div className="flex-shrink-0 w-[max(1rem,calc(50vw-210px))]" aria-hidden="true" />
           </div>
 
           {/* Dot indicators */}
