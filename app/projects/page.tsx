@@ -24,8 +24,8 @@ const projects = [
     github: "https://github.com/Dev-with-Mouzan/CareerCopilot_AI.git",
     live: "http://54.206.89.234:8000/",
     description:
-      "Multi-agent career assistant built with CrewAI and FastAPI using a mixed-LLM setup.",
-    tech: ["CrewAI", "FastAPI", "Groq", "Gemini", "Python"],
+      "Multi-agent career assistant built with langgraph and FastAPI using a mixed-LLM setup.",
+    tech: ["langgraph", "FastAPI", "Groq", "Gemini", "Python"],
   },
   {
     title: "FounderLens AI",
@@ -35,7 +35,7 @@ const projects = [
     live: "https://founder-lens-ai.vercel.app/",
     description:
       "Multi-agent business analysis system with a sequential 6-agent pipeline for risk, market, and growth insights.",
-    tech: ["CrewAI", "FastAPI", "LangChain", "Supabase"],
+    tech: ["langgraph", "FastAPI", "LangChain", "Groq", "Gemini", "Python"],
   },
   {
     title: "Literal AI",
@@ -45,7 +45,7 @@ const projects = [
     live: "http://3.26.219.151/",
     description:
       "AI-powered platform leveraging language models for intelligent text analysis and processing.",
-    tech: ["Python", "LLMs", "AI"],
+    tech: ["Python", "LLMs", "AI","arXiv"],
   },
   {
     title: "RepoXray",
@@ -62,20 +62,20 @@ const projects = [
     category: "GenAI",
     image: "/Facknews_dector.PNG",
     github: "https://github.com/Dev-with-Mouzan/fake-news-detection",
-    live: "https://fake-news-detection-git-main-mouzan-razas-projects.vercel.app/",
+    live: "https://fake-news-detection-lac-seven.vercel.app/",
     description:
       "Classifies news articles as real or fake using LLM-based analysis built with LangChain.",
-    tech: ["Python", "LangChain", "LLMs", "NLP"],
+    tech: ["Python", "LangChain", "LLMs", "NLP","ddgs","gpt-4o-mini"],
   },
   {
     title: "Lead Hunter",
     category: "AI Agent",
     image: "/LeadHunter.PNG",
     github: "https://github.com/Dev-with-Mouzan/Lead_Hunter.git",
-    live: "https://lead-hunter-17qnbxjj0-mouzan-razas-projects.vercel.app/",
+    live: "https://lead-hunter-vs96.vercel.app/",
     description:
-      "AI-powered lead generation agent that autonomously discovers, qualifies, and compiles targeted business leads using intelligent web research.",
-    tech: ["Python", "AI Agents", "LLMs", "Next.js"],
+      "A lead generation Tool that Scrap Goolge Map and discovers, qualifies, and compiles targeted business leads using intelligent web research.",
+    tech: ["Python", "ddgs", "googlemaps", "React", "FastAPI"],
   },
 ]
 
