@@ -83,10 +83,6 @@ export default function Projects() {
       <CustomCursor />
       <Particles />
       <main className="min-h-screen relative">
-        {/* Background glow effects */}
-        <div className="absolute top-20 left-1/4 w-[600px] h-[600px] bg-[#6c3cef]/8 rounded-full blur-[200px] pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-[#2563eb]/6 rounded-full blur-[180px] pointer-events-none" />
-
         {/* Header */}
         <Reveal className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12">
           <h1 className="font-display text-4xl font-semibold mb-4">Projects</h1>

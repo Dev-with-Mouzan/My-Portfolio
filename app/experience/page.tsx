@@ -20,7 +20,7 @@ export default function Experience() {
       company: "Pyzit.Inc",
       period: "25 Dec 2025 - 20 Sep 2026",
       location: "Remote",
-      type: "Full-time",
+      type: "Remote",
       responsibilities: [
         "Built multi-agent AI systems using LangGraph and CrewAI to orchestrate complex, multi-step workflows with stateful execution.",
         "Developed and optimized RAG systems, implementing both vector-based and vectorless architectures for intelligent data retrieval.",
@@ -65,17 +65,17 @@ export default function Experience() {
               <div className="absolute left-6 top-0 bottom-0 w-px bg-border"></div>
               <motion.div
                 style={{ scaleY: timelineProgress }}
-                className="absolute left-6 top-0 bottom-0 w-px bg-accent origin-top shadow-[0_0_8px_rgba(217,119,87,0.6)]"
+                className="absolute left-6 top-0 bottom-0 w-px bg-accent origin-top"
               ></motion.div>
 
               <div className="space-y-12">
                 {experience.map((exp, i) => (
                   <Reveal key={i} delay={i * 0.12} className="relative pl-16">
                     {/* Timeline dot */}
-                    <div className="absolute left-4 top-8 w-4 h-4 rounded-full bg-background border-2 border-accent shadow-[0_0_12px_rgba(217,119,87,0.35)] z-10"></div>
+                    <div className="absolute left-4 top-8 w-4 h-4 rounded-full bg-background border-2 border-accent z-10"></div>
 
                     <TiltCard intensity={5} className="h-full rounded-lg">
-                      <div className="bg-card border border-border rounded-lg p-8 hover:border-accent/40 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-accent/5 group relative overflow-hidden">
+                      <div className="bg-card border border-border rounded-lg p-8 hover:border-accent/40 transition-all duration-300 shadow-sm hover:shadow-xl group relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-[250px] h-[250px] bg-accent/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-accent/10 transition-colors duration-500 pointer-events-none"></div>
 
                         <div className="relative z-10">

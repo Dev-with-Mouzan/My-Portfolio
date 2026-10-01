@@ -320,7 +320,7 @@ export default function Home() {
       category: "AI Agent",
       image: "/LeadHunter.PNG",
       github: "https://github.com/Dev-with-Mouzan/Lead_Hunter.git",
-      live: "https://lead-hunter-17qnbxjj0-mouzan-razas-projects.vercel.app/",
+      live: "https://lead-hunter-vs96.vercel.app/",
       description:
         "AI-powered lead generation agent that autonomously discovers, qualifies, and compiles targeted business leads using intelligent web research.",
       tech: ["Python", "AI Agents", "LLMs", "Next.js"],
@@ -417,7 +417,7 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.8 + i * 0.12 }}
               whileHover={{ scale: 1.12, y: -3 }}
-              className="relative p-3 bg-card border border-accent/30 text-foreground hover:text-accent rounded-lg transition-shadow shadow-[0_0_12px_rgba(217,119,87,0.12)] hover:shadow-[0_0_24px_rgba(217,119,87,0.45)]"
+              className="relative p-3 bg-card border border-accent/30 text-foreground hover:text-accent rounded-lg"
               aria-label={link.name}
             >
               {link.icon}
@@ -431,7 +431,6 @@ export default function Home() {
         <section id="hero" className="min-h-screen relative overflow-hidden">
           <div className="hero-grid-bg absolute inset-0"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[720px] bg-accent/10 blur-[160px] rounded-full pointer-events-none"></div>
           <FloatingShapes />
           <motion.div
             aria-hidden
@@ -562,12 +561,21 @@ export default function Home() {
                 data-aos-delay={i * 100}
                 className="h-full rounded-lg"
               >
-                <div className="p-6 bg-card border border-border rounded-lg hover:border-accent/40 hover:shadow-lg hover:shadow-accent/5 transition-all group h-full">
-                  <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    {item.icon}
+                <div className="group relative p-7 bg-card border border-border rounded-lg hover:border-accent/40 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full overflow-hidden">
+                  <div className="absolute top-0 left-0 h-px w-0 group-hover:w-full transition-all duration-500 bg-gradient-to-r from-accent via-accent/40 to-transparent"></div>
+                  <span className="absolute -top-5 right-2 font-display text-[96px] font-black leading-none text-foreground/[0.04] group-hover:text-accent/10 transition-colors duration-500 pointer-events-none select-none">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="relative z-10 flex items-center gap-4 mb-6">
+                    <div className="w-11 h-11 shrink-0 rounded-lg bg-secondary border border-border flex items-center justify-center text-accent shadow-sm group-hover:scale-110 transition-all duration-300">
+                      {item.icon}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-mono text-[11px] font-bold tracking-[0.2em] text-accent uppercase mb-0.5">{String(i + 1).padStart(2, "0")}</p>
+                      <h3 className="font-display text-xl font-semibold text-foreground leading-tight">{item.title}</h3>
+                    </div>
                   </div>
-                  <h3 className="font-display text-lg font-semibold text-foreground mb-2">{item.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+                  <p className="relative z-10 text-[13px] leading-relaxed text-muted-foreground">{item.desc}</p>
                 </div>
               </TiltCard>
             ))}
@@ -587,7 +595,7 @@ export default function Home() {
                     with around <span className="font-semibold text-foreground">1 year of hands-on experience</span> in Machine Learning and Generative AI.
                   </p>
                   <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                    I started as a <span className="font-semibold text-foreground">Machine Learning Engineer at WebTech.dev</span> (Vehari), and then worked full-time as an <span className="font-semibold text-foreground">AI Engineer at Pyzit.Inc</span> —
+                    I started as a <span className="font-semibold text-foreground">Machine Learning Engineer at WebTech.dev</span> (Vehari), and then worked Remotely as an <span className="font-semibold text-foreground">AI Engineer at Pyzit.Inc</span> —
                     building <span className="font-semibold text-foreground">multi-agent systems, RAG pipelines, and production LLM applications</span>.
                   </p>
                   <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
@@ -640,16 +648,24 @@ export default function Home() {
                 ].map((item, i) => (
                   <div
                     key={i}
-                    className="group relative p-6 rounded-lg bg-card border border-border hover:border-accent/40 transition-all duration-300 shadow-sm hover:shadow-accent/5 hover:-translate-y-1 block overflow-hidden"
+                    className="group relative p-7 rounded-lg bg-card border border-border hover:border-accent/40 transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-y-1 block overflow-hidden"
                     data-aos="fade-up"
                     data-aos-delay={i * 50}
                   >
-                    <div className="absolute -top-12 -right-12 w-32 h-32 bg-accent/10 rounded-full blur-2xl group-hover:bg-accent/20 transition-colors duration-500"></div>
-                    <div className="w-10 h-10 mb-5 rounded-lg bg-secondary flex items-center justify-center text-accent group-hover:scale-110 transition-transform shadow-sm">
-                      {item.icon}
+                    <div className="absolute top-0 left-0 h-px w-0 group-hover:w-full transition-all duration-500 bg-gradient-to-r from-accent via-accent/40 to-transparent"></div>
+                    <span className="absolute -top-5 right-2 font-display text-[96px] font-black leading-none text-foreground/[0.04] group-hover:text-accent/10 transition-colors duration-500 pointer-events-none select-none">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div className="relative z-10 flex items-center gap-4 mb-6">
+                      <div className="w-11 h-11 shrink-0 rounded-lg bg-secondary border border-border flex items-center justify-center text-accent shadow-sm group-hover:scale-110 transition-all duration-300">
+                        {item.icon}
+                      </div>
+                      <div className="min-w-0">
+                        <p className="font-mono text-[11px] font-bold tracking-[0.2em] text-accent uppercase mb-0.5">{String(i + 1).padStart(2, "0")}</p>
+                        <h4 className="font-display text-xl font-semibold text-foreground leading-tight">{item.title}</h4>
+                      </div>
                     </div>
-                    <h4 className="font-display text-lg font-semibold text-foreground mb-2">{item.title}</h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                    <p className="relative z-10 text-[13px] leading-relaxed text-muted-foreground">{item.desc}</p>
                   </div>
                 ))}
               </div>
@@ -664,7 +680,7 @@ export default function Home() {
             {skillCategories.map((category, i) => (
               <Reveal3D key={i} delay={i * 0.05} className="h-full">
                 <TiltCard intensity={5} className="h-full rounded-lg">
-                  <div className="group relative bg-card border border-border rounded-lg p-7 hover:border-accent/40 transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-accent/10 hover:-translate-y-1 flex flex-col h-full overflow-hidden">
+                  <div className="group relative bg-card border border-border rounded-lg p-7 hover:border-accent/40 transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-y-1 flex flex-col h-full overflow-hidden">
                     {/* Accent line that sweeps in on hover */}
                     <div className="absolute top-0 left-0 h-px w-0 group-hover:w-full transition-all duration-500 bg-gradient-to-r from-accent via-accent/40 to-transparent"></div>
                     {/* Oversized index watermark */}
@@ -673,7 +689,7 @@ export default function Home() {
                     </span>
 
                     <div className="relative z-10 flex items-center gap-4 mb-6">
-                      <div className="w-11 h-11 shrink-0 rounded-lg bg-secondary border border-border flex items-center justify-center text-accent shadow-sm group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(217,119,87,0.35)] transition-all duration-300">
+                      <div className="w-11 h-11 shrink-0 rounded-lg bg-secondary border border-border flex items-center justify-center text-accent shadow-sm group-hover:scale-110 transition-all duration-300">
                         {category.icon}
                       </div>
                       <div className="min-w-0">
@@ -711,10 +727,6 @@ export default function Home() {
         </section>
 
         <section id="projects" className="py-20 border-t border-border relative">
-          {/* Background glow effects */}
-          <div className="absolute top-20 left-1/4 w-[600px] h-[600px] bg-[#6c3cef]/8 rounded-full blur-[200px] pointer-events-none" />
-          <div className="absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-[#2563eb]/6 rounded-full blur-[180px] pointer-events-none" />
-
           <div className="max-w-7xl mx-auto px-4 relative z-10">
             <div className="flex flex-col items-center text-center mb-14" data-aos="fade-up">
               <p className="eyebrow mb-3">
@@ -737,19 +749,19 @@ export default function Home() {
             <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-muted md:-translate-x-1/2"></div>
             <motion.div
               style={{ scaleY: timelineProgress }}
-              className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-accent md:-translate-x-1/2 origin-top shadow-[0_0_8px_rgba(217,119,87,0.6)]"
+              className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-accent md:-translate-x-1/2 origin-top"
             ></motion.div>
 
             <div className="space-y-12">
               {experience.map((exp, i) => (
                 <Reveal3D key={i} delay={i * 0.1} className={`relative flex flex-col md:flex-row gap-8 items-start ${i % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
 
-                  <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-background border-2 border-accent transform -translate-x-1/2 mt-1.5 shadow-[0_0_15px_rgba(217,119,87,0.35)] z-10"></div>
+                  <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-background border-2 border-accent transform -translate-x-1/2 mt-1.5 z-10"></div>
 
                   <div className="hidden md:block w-1/2"></div>
 
                   <div className="w-full md:w-1/2 pl-12 md:pl-0">
-                    <div className={`bg-card border border-border rounded-lg p-8 hover:border-accent/40 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-accent/5 group relative overflow-hidden ${i % 2 === 0 ? "md:mr-12" : "md:ml-12"}`}>
+                    <div className={`bg-card border border-border rounded-lg p-8 hover:border-accent/40 transition-all duration-300 shadow-sm hover:shadow-xl group relative overflow-hidden ${i % 2 === 0 ? "md:mr-12" : "md:ml-12"}`}>
                       <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-accent/5 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-accent/10 transition-colors duration-500 pointer-events-none"></div>
 
                       <div className="relative z-10">
@@ -791,32 +803,35 @@ export default function Home() {
             {achievements.map((a, i) => (
               <Reveal3D key={i} delay={i * 0.05} className="h-full">
                 <TiltCard intensity={5} className="h-full rounded-lg">
-                  <div className="group relative bg-card border border-border rounded-lg p-7 hover:border-accent/40 transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-accent/5 flex flex-col h-full overflow-hidden">
-                    <div className="absolute -top-12 -right-12 w-32 h-32 bg-accent/10 rounded-full blur-2xl group-hover:bg-accent/20 transition-colors duration-500 pointer-events-none"></div>
+                  <div className="group relative bg-card border border-border rounded-lg p-7 hover:border-accent/40 transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-y-1 flex flex-col h-full overflow-hidden">
+                    <div className="absolute top-0 left-0 h-px w-0 group-hover:w-full transition-all duration-500 bg-gradient-to-r from-accent via-accent/40 to-transparent"></div>
+                    <span className="absolute -top-5 right-2 font-display text-[96px] font-black leading-none text-foreground/[0.04] group-hover:text-accent/10 transition-colors duration-500 pointer-events-none select-none">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
 
-                    <div className="relative z-10 flex flex-col h-full">
-                      <div className="flex items-start justify-between gap-4 mb-5">
-                        <div className="w-10 h-10 shrink-0 rounded-lg bg-secondary flex items-center justify-center text-accent group-hover:scale-110 transition-transform shadow-sm">
-                          <Trophy size={20} />
-                        </div>
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-wider text-accent bg-accent/10 border border-accent/30 rounded-md text-right">
-                          <Medal size={12} className="shrink-0" /> {a.result}
-                        </span>
+                    <div className="relative z-10 flex items-center gap-4 mb-5">
+                      <div className="w-11 h-11 shrink-0 rounded-lg bg-secondary border border-border flex items-center justify-center text-accent shadow-sm group-hover:scale-110 transition-all duration-300">
+                        <Trophy size={20} />
                       </div>
-
-                      <h3 className="font-display text-xl font-semibold text-foreground mb-3 relative z-10">
-                        {a.event}
-                      </h3>
-
-                      <p className="flex items-start gap-2 text-sm text-muted-foreground mb-5 relative z-10">
-                        <MapPin size={14} className="shrink-0 text-accent mt-0.5" />
-                        <span>{a.venue}</span>
-                      </p>
-
-                      <p className="text-sm text-muted-foreground/70 leading-relaxed relative z-10 mt-auto">
-                        {a.description}
-                      </p>
+                      <div className="min-w-0">
+                        <p className="font-mono text-[11px] font-bold tracking-[0.2em] text-accent uppercase mb-0.5">{String(i + 1).padStart(2, "0")}</p>
+                        <h3 className="font-display text-xl font-semibold text-foreground leading-tight">{a.event}</h3>
+                      </div>
                     </div>
+
+                    <div className="relative z-10 flex flex-wrap items-center gap-3 mb-4">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-wider text-accent bg-accent/10 border border-accent/30 rounded-md">
+                        <Medal size={12} className="shrink-0" /> {a.result}
+                      </span>
+                      <span className="flex items-center gap-1.5 text-[13px] text-muted-foreground">
+                        <MapPin size={13} className="shrink-0 text-accent" />
+                        {a.venue}
+                      </span>
+                    </div>
+
+                    <p className="relative z-10 text-[13px] leading-relaxed text-muted-foreground mt-auto">
+                      {a.description}
+                    </p>
                   </div>
                 </TiltCard>
               </Reveal3D>
@@ -937,9 +952,6 @@ export default function Home() {
         </section>
 
         <footer className="border-t border-border relative overflow-hidden">
-          {/* Subtle glow */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
-
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             {/* Top section */}
             <div className="py-16 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">

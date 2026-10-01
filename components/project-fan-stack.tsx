@@ -97,7 +97,7 @@ export function ProjectFanStack({ projects, autoAdvanceMs = 5000 }: { projects: 
                 background: "rgb(26 26 24)",
                 border: isActive ? "1px solid rgba(217,119,87,0.55)" : "1px solid rgba(55,53,50,1)",
                 boxShadow: isActive
-                  ? "0 30px 70px rgba(0,0,0,0.55), 0 0 44px rgba(217,119,87,0.10)"
+                  ? "0 30px 70px rgba(0,0,0,0.55)"
                   : "0 14px 34px rgba(0,0,0,0.4)",
               }}
             >
@@ -171,7 +171,7 @@ export function ProjectFanStack({ projects, autoAdvanceMs = 5000 }: { projects: 
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
                     aria-label={`Open ${project.title} live demo`}
-                    className="shrink-0 w-11 h-11 rounded-full bg-accent text-background flex items-center justify-center shadow-[0_8px_20px_rgba(217,119,87,0.35)] hover:scale-105 hover:shadow-[0_10px_26px_rgba(217,119,87,0.5)] transition-all"
+                    className="shrink-0 w-11 h-11 rounded-full bg-accent text-background flex items-center justify-center hover:scale-105 transition-all"
                   >
                     <ExternalLink size={18} />
                   </a>

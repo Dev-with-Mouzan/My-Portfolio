@@ -3,7 +3,6 @@ import type { Metadata } from "next"
 import { JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
-import { Providers } from "@/components/providers"
 import { Chatbot } from "@/components/chatbot"
 import { BootSequence } from "@/components/boot-sequence"
 
@@ -48,7 +47,7 @@ export default function RootLayout({
         <div aria-hidden className="scanlines pointer-events-none fixed inset-0 z-[60]" />
         <div aria-hidden className="crt-vignette pointer-events-none fixed inset-0 z-[59]" />
         <BootSequence />
-        <Providers>{children}</Providers>
+        {children}
         <Chatbot />
         <Analytics />
       </body>

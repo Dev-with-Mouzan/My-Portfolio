@@ -73,7 +73,7 @@ export default function SkillsPage() {
               {skillCategories.map((category, i) => (
                 <Reveal3D key={i} delay={i * 0.05} className="h-full">
                   <TiltCard intensity={5} className="h-full rounded-lg">
-                    <div className="group relative bg-card border border-border rounded-lg p-7 hover:border-accent/40 transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-accent/10 hover:-translate-y-1 flex flex-col h-full overflow-hidden">
+                    <div className="group relative bg-card border border-border rounded-lg p-7 hover:border-accent/40 transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-y-1 flex flex-col h-full overflow-hidden">
                       {/* Accent line that sweeps in on hover */}
                       <div className="absolute top-0 left-0 h-px w-0 group-hover:w-full transition-all duration-500 bg-gradient-to-r from-accent via-accent/40 to-transparent"></div>
                       {/* Oversized index watermark */}
@@ -82,7 +82,7 @@ export default function SkillsPage() {
                       </span>
 
                       <div className="relative z-10 flex items-center gap-4 mb-6">
-                        <div className="w-11 h-11 shrink-0 rounded-lg bg-secondary border border-border flex items-center justify-center text-accent shadow-sm group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(217,119,87,0.35)] transition-all duration-300">
+                        <div className="w-11 h-11 shrink-0 rounded-lg bg-secondary border border-border flex items-center justify-center text-accent shadow-sm group-hover:scale-110 transition-all duration-300">
                           {category.icon}
                         </div>
                         <div className="min-w-0">

@@ -94,12 +94,6 @@
   background-size: 48px 48px;
 }
 
-.terminal-glow {
-  text-shadow:
-    0 0 14px rgb(var(--accent) / 0.4),
-    0 0 44px rgb(var(--accent) / 0.16);
-}
-
 .scanlines {
   background: repeating-linear-gradient(
     to bottom,
@@ -160,10 +154,8 @@
 }
 
 @media (min-width: 1024px) {
-  html, body, * {
-    cursor: none !important;
-  }
-  a, button, input, textarea, select, [role="button"] {
+  html[data-cursor="none"],
+  html[data-cursor="none"] * {
     cursor: none !important;
   }
 }

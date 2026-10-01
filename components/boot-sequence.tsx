@@ -17,14 +17,6 @@ export function BootSequence() {
   const [fading, setFading] = useState(false)
 
   useEffect(() => {
-    if (typeof window === "undefined") return
-    if (
-      sessionStorage.getItem("mouz_booted") === "1" ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      return
-    }
-    sessionStorage.setItem("mouz_booted", "1")
     setVisible(true)
   }, [])
 

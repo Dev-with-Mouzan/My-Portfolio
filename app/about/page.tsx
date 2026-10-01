@@ -100,13 +100,21 @@ export default function About() {
                 {roadmap.map((item, i) => (
                   <Reveal key={i} delay={i * 0.07} className="h-full">
                   <TiltCard intensity={5} className="h-full rounded-lg">
-                    <div className="group relative p-6 rounded-lg bg-card border border-border hover:border-accent/40 transition-all duration-300 shadow-sm hover:shadow-accent/5 hover:-translate-y-1 h-full overflow-hidden">
-                      <div className="absolute -top-12 -right-12 w-32 h-32 bg-accent/10 rounded-full blur-2xl group-hover:bg-accent/20 transition-colors duration-500"></div>
-                      <div className="w-10 h-10 mb-5 rounded-lg bg-secondary flex items-center justify-center text-accent group-hover:scale-110 transition-transform shadow-sm relative z-10">
-                        {item.icon}
+                    <div className="group relative p-7 rounded-lg bg-card border border-border hover:border-accent/40 transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-y-1 h-full overflow-hidden">
+                      <div className="absolute top-0 left-0 h-px w-0 group-hover:w-full transition-all duration-500 bg-gradient-to-r from-accent via-accent/40 to-transparent"></div>
+                      <span className="absolute -top-5 right-2 font-display text-[96px] font-black leading-none text-foreground/[0.04] group-hover:text-accent/10 transition-colors duration-500 pointer-events-none select-none">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <div className="relative z-10 flex items-center gap-4 mb-6">
+                        <div className="w-11 h-11 shrink-0 rounded-lg bg-secondary border border-border flex items-center justify-center text-accent shadow-sm group-hover:scale-110 transition-all duration-300">
+                          {item.icon}
+                        </div>
+                        <div className="min-w-0">
+                          <p className="font-mono text-[11px] font-bold tracking-[0.2em] text-accent uppercase mb-0.5">{String(i + 1).padStart(2, "0")}</p>
+                          <h4 className="font-display text-xl font-semibold text-foreground leading-tight">{item.title}</h4>
+                        </div>
                       </div>
-                      <h4 className="font-display text-lg font-semibold text-foreground mb-2 relative z-10">{item.title}</h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed relative z-10">{item.desc}</p>
+                      <p className="relative z-10 text-[13px] leading-relaxed text-muted-foreground">{item.desc}</p>
                     </div>
                   </TiltCard>
                   </Reveal>
