@@ -5,6 +5,7 @@ import type React from "react"
 import { Navigation } from "@/components/navigation"
 import { useState } from "react"
 import { Spinner } from "@/components/spinner"
+import { Reveal } from "@/components/scroll-reveal"
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -93,6 +94,7 @@ export default function Contact() {
         <section className="max-w-6xl mx-auto px-4 py-20">
           <div className="space-y-12">
             {/* Social Links Section */}
+            <Reveal>
             <div className="bg-card border border-border rounded-2xl p-8">
               <h2 className="font-display text-2xl font-semibold mb-6">Connect With Me</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -110,9 +112,11 @@ export default function Contact() {
                 ))}
               </div>
             </div>
+            </Reveal>
 
             {/* Contact Form */}
             <div className="space-y-6">
+              <Reveal>
               <div className="mb-8">
                 <h1 className="font-display text-4xl md:text-5xl font-semibold mb-4">Get In Touch</h1>
                 <p className="text-lg text-muted-foreground max-w-2xl">
@@ -120,6 +124,8 @@ export default function Contact() {
                   me a message and I'll respond as soon as possible.
                 </p>
               </div>
+              </Reveal>
+              <Reveal delay={0.12}>
               <h2 className="font-display text-2xl font-semibold">Send me a Message</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -189,6 +195,7 @@ export default function Contact() {
                   </p>
                 )}
               </form>
+              </Reveal>
             </div>
           </div>
         </section>

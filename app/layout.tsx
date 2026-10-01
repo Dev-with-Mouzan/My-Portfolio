@@ -14,13 +14,13 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Mouzan Raza - GenAI Engineer | RAG Systems & LLM Applications",
+  title: "Mouzan Raza - AI Engineer | LLM, RAG & Agentic Systems",
   description:
-    "GenAI Engineer specializing in RAG systems, LLM applications, ML pipelines, and intelligent backends. Professional, proven, and available for full-time, freelance, and collaboration.",
-  keywords: "GenAI, LLM, AI Agents, RAG, LangChain, Prompt Engineering, Machine Learning, Backend Developer, AI Engineer",
+    "AI Engineer with 1+ year of hands-on experience building LLM applications, RAG pipelines, multi-agent systems, and end-to-end ML solutions. Professional, proven, and available for full-time, freelance, and collaboration.",
+  keywords: "AI Engineer, GenAI, LLM, AI Agents, RAG, LangGraph, CrewAI, Prompt Engineering, Machine Learning, FastAPI, AWS",
   authors: [{ name: "Mouzan Raza" }],
   openGraph: {
-    title: "Mouzan Raza - GenAI Engineer",
+    title: "Mouzan Raza - AI Engineer",
     description: "I build production-ready AI applications — RAG systems, LLM pipelines, and intelligent backends that solve real problems.",
     type: "website",
     locale: "en_US",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mouzan Raza - GenAI Engineer",
+    title: "Mouzan Raza - AI Engineer",
     description: "Building intelligent systems using LLMs, RAG, and automation workflows.",
   },
   generator: 'v0.app'

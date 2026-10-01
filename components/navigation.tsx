@@ -10,6 +10,7 @@ const links = [
   { href: "#skills", label: "Skills" },
   { href: "#projects", label: "Projects" },
   { href: "#experience", label: "Experience" },
+  { href: "#achievements", label: "Achievements" },
   { href: "#contact", label: "Contact" },
 ]
 
@@ -23,7 +24,7 @@ export function Navigation() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
 
-      const sections = ["hero", "about", "skills", "projects", "experience", "contact"]
+      const sections = ["hero", "about", "skills", "projects", "experience", "achievements", "contact"]
       const scrollPosition = window.scrollY + 100
 
       for (const section of sections) {

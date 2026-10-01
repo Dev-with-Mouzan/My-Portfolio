@@ -27,7 +27,7 @@ export function Animations() {
   useEffect(() => {
     const typed = new Typewriter("#typewriter-target", {
       strings: [
-        "GenAI Developer",
+        "AI Engineer",
         "RAG Systems Engineer",
         "LLM Application Builder",
         "AI Automation Specialist",
@@ -72,7 +72,7 @@ export function Animations() {
       setStats({
         roles: Math.min(2, Math.floor(progress * 2.5)),
         projects: Math.min(3, Math.floor(progress * 3.5)),
-        cgpa: Math.min(3.8, progress * 3.9),
+        cgpa: Math.min(3.83, progress * 3.9),
         years: Math.min(1, progress * 1.2),
       })
 

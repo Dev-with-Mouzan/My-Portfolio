@@ -1,19 +1,19 @@
 export const portfolioData = {
   name: "Mouzan Raza",
-  title: "GenAI Developer",
+  title: "AI Engineer",
   tagline:
     "I build production-ready AI applications — RAG systems, LLM pipelines, and intelligent backends that solve real problems.",
   location: "Burewala, Pakistan",
   email: "mouzan.ai.dev@gmail.com",
-  phone: "+92-311-4216514",
+  phone: "+92-315-1415267",
   resume: "/Mouzan_Raza_Resume.docx",
   availability: "Open to full-time, freelance, internships, and collaboration opportunities.",
   status: "Available for hire",
   education: {
     degree: "B.Sc. Computer Science (BSCS)",
-    university: "GC University Faisalabad (GCUF)",
+    university: "Govt College University Faisalabad (GCUF)",
     semester: "7th Semester",
-    cgpa: "3.85 / 4.00",
+    cgpa: "3.83 / 4.00",
   },
   github: {
     username: "Dev-with-Mouzan",
@@ -35,66 +35,67 @@ export const portfolioData = {
   ],
   experience: [
     {
-      role: "Freelance GenAI Developer",
-      company: "Independent Freelancer",
-      period: "Dec 2025 - Present",
+      role: "AI Engineer",
+      company: "Pyzit.Inc",
+      period: "25 Dec 2025 - 20 Sep 2026",
       details:
-        "Working full-time as a freelancer, mainly with local clients. Delivering academic and production AI projects — Fake News Detection (LangChain), AI Study Planner, Fruit Classification, Role-Based Prompt Generator, and a Code Reviewer (LangGraph + LangChain). Currently building a multi-agent system to generate freelance leads.",
+        "Built multi-agent AI systems using LangGraph and CrewAI to orchestrate complex, multi-step workflows with stateful execution. Developed and optimized RAG systems, implementing both vector-based and vectorless architectures for intelligent data retrieval. Designed LLM-powered applications with structured outputs, tool calling, retrieval workflows, and production-oriented backend APIs.",
     },
     {
-      role: "ML Engineer (Internship)",
-      company: "WebTech.dev, Vehari, Pakistan",
-      period: "Jun 2025 - Dec 2025",
+      role: "Machine Learning Engineer",
+      company: "WebTech.dev Software House, Vehari, Pakistan",
+      period: "10 Jun 2025 - 10 Dec 2025",
       details:
-        "6-month internship. Trained machine learning models on real client datasets and monitored model performance in production.",
+        "Built end-to-end machine learning pipelines covering data cleaning, EDA, feature engineering, model training, evaluation, and deployment using Scikit-learn, XGBoost, and LightGBM. Developed NLP solutions for text classification and sentiment analysis with HuggingFace Transformers, exposing trained models via FastAPI REST endpoints for real-time client use.",
     },
   ],
   skills: [
     {
-      category: "Generative AI & LLMs",
-      items: [
-        "LangGraph",
-        "CrewAI",
-        "RAG Systems",
-        "Prompt Engineering",
-        "Fine-Tuning (LoRA/QLoRA)",
-        "LLM Evaluation",
-        "Context Engineering",
-        "OpenAI API",
-        "Anthropic API",
-        "HuggingFace Transformers",
-      ],
+      category: "LLM & GenAI",
+      items: ["Prompt Engineering", "RAG (Vector & Vectorless)", "Multi-Agent Systems", "Fine-Tuning (LoRA, QLoRA)"],
     },
     {
-      category: "Machine Learning & Deep Learning",
-      items: ["Scikit-learn", "TensorFlow", "Keras", "XGBoost", "LightGBM", "CatBoost", "BERT/DistilBERT", "NLP Pipelines", "CNN", "RNN/LSTM", "Transformers"],
+      category: "Agents & Retrieval",
+      items: ["LangGraph", "CrewAI", "FAISS", "Chroma", "Pinecone"],
     },
     {
-      category: "Backend Development",
-      items: ["FastAPI", "REST APIs", "Pydantic", "JWT Authentication", "PostgreSQL", "MySQL", "SQLite", "Docker", "GitHub Actions"],
+      category: "Machine Learning",
+      items: ["Scikit-learn", "XGBoost", "LightGBM", "TensorFlow"],
     },
     {
-      category: "Data & Vector Databases",
-      items: ["Pandas", "NumPy", "Matplotlib", "Seaborn", "FAISS", "Chroma", "Pinecone", "pgvector"],
+      category: "Backend",
+      items: ["Python", "SQL", "FastAPI", "REST APIs", "SSE Streaming", "PostgreSQL", "Redis"],
     },
     {
-      category: "Tools & Platforms",
-      items: ["Git", "GitHub", "VS Code", "Jupyter Notebook", "Streamlit", "Gradio", "Google Colab", "LangSmith"],
+      category: "Cloud & DevOps",
+      items: ["AWS", "Docker", "GitHub Actions"],
+    },
+    {
+      category: "Data & Tools",
+      items: ["Pandas", "NumPy", "Matplotlib", "Seaborn", "Git", "GitHub", "Streamlit", "React"],
     },
   ],
   projects: [
     {
+      name: "DevPilot AI",
+      description:
+        "Multi-agent software engineering platform where AI agents plan, implement, review, test, and deploy software projects — with stateful workflows, persistent memory, tool calling, Git checkpoints, retry/recovery, and human-in-the-loop controls.",
+      url: "https://github.com/Dev-with-Mouzan/DevPilot_Ai.git",
+      demo: "https://devpliotai.site",
+    },
+    {
       name: "CareerCopilot AI",
       description:
-        "Multi-agent career assistant (CrewAI + FastAPI) with a mixed-LLM setup — Groq (Llama-3.1) for fast tool-calling web scraping and Gemini for deep ATS analysis and strategic reasoning.",
+        "Agentic career intelligence platform (LangGraph + FastAPI) for resume analysis, job discovery, job matching, ATS evaluation, career planning, and interview preparation — combining LLM reasoning with deterministic skill matching and ATS scoring, deployed on Docker and AWS.",
       url: "https://github.com/Dev-with-Mouzan/CareerCopilot_AI.git",
+      demo: "http://54.206.89.234:8000/",
     },
     {
       name: "FounderLens AI",
       description:
-        "Multi-agent business analysis system (CrewAI + FastAPI). A sequential 6-agent pipeline (intake, insight, conflict, planning, simulation, recovery) analyzes CSV/PDF/website data for risk, market trends, and growth strategies.",
+        "Multi-agent startup validation system running parallel competitive, market, and risk analysis with quality-control and automatic retry workflows, plus web research, structured state management, validation gates, and multiple LLM providers.",
       url: "https://github.com/Dev-with-Mouzan/FounderLens_AI.git",
-      demo: "https://founderai-production-a4e4.up.railway.app/",
+      demo: "https://founder-lens-ai.vercel.app/",
     },
     {
       name: "Fake News Detection System",
@@ -122,12 +123,29 @@ export const portfolioData = {
       url: "https://github.com/Dev-with-Mouzan",
     },
   ],
+  achievements: [
+    {
+      event: "Byte & Battle: The Ultimate Gaming & Coding Clash",
+      result: "4th Position in Programming",
+      venue: "University of Agriculture Faisalabad (UAF) Sub-Campus Burewala",
+      description:
+        "Secured 4th position in the on-the-spot programming competition at Byte & Battle, competing against participants from multiple universities.",
+    },
+    {
+      event: "VSpark — On-Spot Programming Competition",
+      result: "2nd Position",
+      venue: "COMSATS University, Vehari",
+      description:
+        "Secured 2nd position in VSpark, the on-the-spot programming competition held at COMSATS University Vehari.",
+    },
+  ],
   funFacts: [
-    "Mouzan is a 7th-semester BS Computer Science student at GC University Faisalabad.",
-    "He started with a 6-month ML internship at WebTech.dev and now freelances full-time in GenAI.",
-    "He is currently building a multi-agent system that autonomously generates his own freelancing leads.",
-    "He specializes in CrewAI multi-agent systems, LangGraph workflows, and RAG pipelines.",
-    "He maintains a 3.85 CGPA at GCUF while shipping real client projects.",
+    "Mouzan is a 7th-semester BS Computer Science student at Govt College University Faisalabad with a 3.83 CGPA.",
+    "He started as a Machine Learning Engineer at WebTech.dev (Vehari) and then worked as an AI Engineer at Pyzit.Inc, building multi-agent and RAG systems.",
+    "He built DevPilot AI, a multi-agent platform where AI agents plan, implement, review, test, and deploy software projects.",
+    "He specializes in LangGraph and CrewAI multi-agent systems, vector & vectorless RAG pipelines, and production LLM applications.",
+    "He has 1+ year of hands-on experience shipping real AI products — from idea to production with FastAPI, Docker, and AWS.",
+    "He won 2nd position in VSpark, an on-the-spot programming competition at COMSATS University Vehari.",
   ],
 }
 
@@ -141,6 +159,7 @@ export const initialSuggestions = [
   "What are his skills?",
   "Projects",
   "Experience",
+  "Achievements",
   "Contact",
   "Hire Me",
 ]
@@ -152,7 +171,7 @@ interface ChatPattern {
 }
 
 const aboutReply = (): ChatReply => ({
-  text: `${portfolioData.name} is a ${portfolioData.title} — a ${portfolioData.education.semester.toLowerCase()} Computer Science student at ${portfolioData.education.university} with a CGPA of ${portfolioData.education.cgpa} and around 1 year of hands-on experience in ML and GenAI.\n\n${portfolioData.tagline}\n\nHe started with a 6-month ML internship at WebTech.dev (Vehari) and now works full-time as a freelancer, specializing in multi-agent systems, RAG pipelines, and agentic workflows. He is currently ${portfolioData.status.toLowerCase()}.`,
+  text: `${portfolioData.name} is a ${portfolioData.title} — a ${portfolioData.education.semester.toLowerCase()} Computer Science student at ${portfolioData.education.university} with a CGPA of ${portfolioData.education.cgpa} and around 1 year of hands-on experience in ML and GenAI.\n\n${portfolioData.tagline}\n\nHe started as a Machine Learning Engineer at WebTech.dev (Vehari) and then worked as an AI Engineer at Pyzit.Inc (remote), building multi-agent systems with LangGraph and CrewAI, RAG pipelines, and production-oriented LLM applications. He is currently ${portfolioData.status.toLowerCase()}.`,
   suggestions: ["Skills", "Projects", "Experience", "Contact"],
 })
 
@@ -201,13 +220,20 @@ const locationReply = (): ChatReply => ({
 })
 
 const githubReply = (): ChatReply => ({
-  text: `Mouzan's GitHub is ${portfolioData.github.url} — ${portfolioData.github.repos}+ public repositories.\n\nHighlights:\n- CareerCopilot_AI\n- FounderLens_AI\n\nYou can also ask me about his projects for more detail.`,
+  text: `Mouzan's GitHub is ${portfolioData.github.url} — ${portfolioData.github.repos}+ public repositories.\n\nHighlights:\n- DevPilot_Ai\n- CareerCopilot_AI\n- FounderLens_AI\n\nYou can also ask me about his projects for more detail.`,
   suggestions: ["Projects", "Contact"],
 })
 
 const focusReply = (): ChatReply => ({
   text: `Mouzan's main focus areas:\n\n${portfolioData.focusAreas.map((f) => `- ${f}`).join("\n")}\n\nAsk me about RAG systems, agent orchestration, or LLM fine-tuning.`,
   suggestions: ["What are his skills?", "Projects", "Experience"],
+})
+
+const achievementsReply = (): ChatReply => ({
+  text: `Mouzan's competition achievements:\n\n${portfolioData.achievements
+    .map((a, i) => `${i + 1}. ${a.event}\n   Result: ${a.result}\n   Venue: ${a.venue}`)
+    .join("\n\n")}\n\nAsk me about his projects to see what he has built.`,
+  suggestions: ["Projects", "Experience", "Contact"],
 })
 
 const funFactReply = (): ChatReply => ({
@@ -221,7 +247,7 @@ const greetingReply = (): ChatReply => ({
 })
 
 const helpReply = (): ChatReply => ({
-  text: `You can ask me things like:\n\n- "Who is Mouzan?"\n- "What are his skills?"\n- "Tell me about his projects"\n- "Work experience"\n- "Contact information"\n- "Is he available for hire?"\n- "Resume" or "GitHub"`,
+  text: `You can ask me things like:\n\n- "Who is Mouzan?"\n- "What are his skills?"\n- "Tell me about his projects"\n- "Work experience"\n- "Achievements"\n- "Contact information"\n- "Is he available for hire?"\n- "Resume" or "GitHub"`,
   suggestions: initialSuggestions,
 })
 
@@ -249,6 +275,7 @@ const patterns: ChatPattern[] = [
   { id: "skills", keywords: ["skills", "technolog", "tech stack", "tools", "languages", "framework", "stack", "expertise"], reply: skillsReply },
   { id: "experience", keywords: ["experience", "work history", "career", "jobs", "job history", "professional", "employed", "worked at", "freelance", "employment"], reply: experienceReply },
   { id: "projects", keywords: ["projects", "project", "built", "created", "made", "portfolio", "products", "repositor", "repo", "source code"], reply: projectsReply },
+  { id: "achievements", keywords: ["achievement", "achievements", "competition", "competitions", "contest", "award", "awards", "position", "won", "winner", "vspark", "byte & battle", "byte and battle"], reply: achievementsReply },
   { id: "education", keywords: ["education", "university", "degree", "studying", "study", "college", "bachelor", "gcuf", "cgpa", "grades", "semester", "academic"], reply: educationReply },
   { id: "contact", keywords: ["contact", "email", "reach", "phone", "phone number", "whatsapp", "call", "linkedin", "message", "get in touch", "social"], reply: contactReply },
   { id: "availability", keywords: ["hire", "available", "open to work", "opportunit", "collaborat", "full-time", "full time", "internship", "contract"], reply: availabilityReply },

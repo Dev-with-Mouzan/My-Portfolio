@@ -1,12 +1,12 @@
 "use client"
 
-import { useState, useEffect, useRef, useCallback } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { Navigation } from "@/components/navigation"
 import { Particles } from "@/components/particles"
 import { CustomCursor } from "@/components/custom-cursor"
-import Image from "next/image"
-import { ArrowRight, Download, MapPin, GraduationCap, Code2, Brain, Zap, ArrowUp, Phone } from "lucide-react"
+import { ProjectFanStack } from "@/components/project-fan-stack"
+import { ArrowRight, Download, MapPin, GraduationCap, Code2, Brain, Zap, ArrowUp, Phone, Trophy, Medal, Sparkles, Bot, BrainCircuit, Server, Cloud, Database } from "lucide-react"
 import { Spinner } from "@/components/spinner"
 import { FloatingShapes, ScrollCube, Reveal3D, TiltCard } from "@/components/three-d"
 import { useForm } from "react-hook-form"
@@ -47,55 +47,7 @@ export default function Home() {
   const heroY = useTransform(scrollY, [0, 600], [0, 140])
   const heroOpacity = useTransform(scrollY, [0, 420], [1, 0])
   const timelineRef = useRef<HTMLDivElement>(null)
-  const projectsScrollRef = useRef<HTMLDivElement>(null)
-  const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(true)
-  const [isMobile, setIsMobile] = useState(false)
 
-  // One card per step on mobile, two on larger screens
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 639px)")
-    const update = () => setIsMobile(mq.matches)
-    update()
-    mq.addEventListener("change", update)
-    return () => mq.removeEventListener("change", update)
-  }, [])
-
-  const checkProjectsScroll = useCallback(() => {
-    const el = projectsScrollRef.current
-    if (!el) return
-    setCanScrollLeft(el.scrollLeft > 10)
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10)
-  }, [])
-
-  const scrollProjects = (direction: "left" | "right") => {
-    const el = projectsScrollRef.current
-    if (!el) return
-    const cardWidth = el.querySelector<HTMLElement>("[data-card]")?.offsetWidth || 420
-    const gap = isMobile ? 24 : 32
-    const scrollAmount = (cardWidth + gap) * (isMobile ? 1 : 2)
-    el.scrollBy({ left: direction === "left" ? -scrollAmount : scrollAmount, behavior: "smooth" })
-    setTimeout(checkProjectsScroll, 400)
-  }
-
-  // Auto-scroll every 4 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const el = projectsScrollRef.current
-      if (!el) return
-      const cardWidth = el.querySelector<HTMLElement>("[data-card]")?.offsetWidth || 420
-      const gap = isMobile ? 24 : 32
-      const scrollAmount = (cardWidth + gap) * (isMobile ? 1 : 2)
-      const atEnd = el.scrollLeft >= el.scrollWidth - el.clientWidth - 10
-      if (atEnd) {
-        el.scrollTo({ left: 0, behavior: "smooth" })
-      } else {
-        el.scrollBy({ left: scrollAmount, behavior: "smooth" })
-      }
-      setTimeout(checkProjectsScroll, 400)
-    }, 4000)
-    return () => clearInterval(interval)
-  }, [checkProjectsScroll, isMobile])
   const { scrollYProgress: timelineProgress } = useScroll({
     target: timelineRef,
     offset: ["start 0.75", "end 0.55"],
@@ -120,7 +72,7 @@ export default function Home() {
   }, [statsAnimated])
 
   const animateStats = () => {
-    const targets = { roles: 2, projects: 7, cgpa: 3.85, years: 1 }
+    const targets = { roles: 2, projects: 7, cgpa: 3.83, years: 1 }
     const duration = 1500
     const steps = 60
     const interval = duration / steps
@@ -164,7 +116,7 @@ export default function Home() {
       if (typeof window !== "undefined" && (window as any).Typed) {
         new (window as any).Typed("#typewriter-target", {
           strings: [
-            "GenAI Developer",
+            "AI Engineer",
             "Multi-Agent Systems Engineer",
             "LLM Application Builder",
             "RAG & Agentic AI Specialist",
@@ -217,59 +169,88 @@ export default function Home() {
   const skillCategories = [
     {
       index: "01",
-      title: "Generative AI & LLMs",
-      skills: ["LangGraph", "CrewAI", "RAG Systems", "Prompt Engineering", "Fine-Tuning (LoRA/QLoRA)", "LLM Evaluation", "Context Engineering", "OpenAI API", "Anthropic API", "HuggingFace Transformers"],
+      title: "LLM & GenAI",
+      icon: <Sparkles size={20} />,
+      desc: "Prompt engineering, vector & vectorless RAG, multi-agent systems, and LoRA/QLoRA fine-tuning — the core of everything I build.",
+      skills: ["Prompt Engineering", "RAG (Vector & Vectorless)", "Multi-Agent Systems", "Fine-Tuning (LoRA, QLoRA)"],
     },
     {
       index: "02",
-      title: "Machine Learning & Deep Learning",
-      skills: ["Scikit-learn", "TensorFlow", "Keras", "XGBoost", "LightGBM", "CatBoost", "BERT/DistilBERT", "NLP Pipelines", "CNN", "RNN/LSTM", "Transformers"],
+      title: "Agents & Retrieval",
+      icon: <Bot size={20} />,
+      desc: "Orchestrating stateful agents with LangGraph and CrewAI, backed by FAISS, Chroma, and Pinecone for semantic retrieval.",
+      skills: ["LangGraph", "CrewAI", "FAISS", "Chroma", "Pinecone"],
     },
     {
       index: "03",
-      title: "Backend Development",
-      skills: ["FastAPI", "REST APIs", "Pydantic", "JWT Authentication", "RBAC", "PostgreSQL", "MySQL", "SQLite", "Docker", "GitHub Actions"],
+      title: "Machine Learning",
+      icon: <BrainCircuit size={20} />,
+      desc: "End-to-end ML pipelines — data cleaning, feature engineering, training, and evaluation — from Scikit-learn to gradient boosting and TensorFlow.",
+      skills: ["Scikit-learn", "XGBoost", "LightGBM", "TensorFlow"],
     },
     {
       index: "04",
-      title: "Data & Vector Databases",
-      skills: ["Pandas", "NumPy", "Matplotlib", "Seaborn", "FAISS", "Chroma", "Pinecone", "pgvector"],
+      title: "Backend",
+      icon: <Server size={20} />,
+      desc: "Production-oriented Python APIs with FastAPI — REST endpoints, SSE streaming, and fast data layers with SQL, PostgreSQL, and Redis.",
+      skills: ["Python", "SQL", "FastAPI", "REST APIs", "SSE Streaming", "PostgreSQL", "Redis"],
     },
     {
       index: "05",
-      title: "Languages",
-      skills: ["Python (Advanced)", "SQL (Advanced)", "Bash"],
+      title: "Cloud & DevOps",
+      icon: <Cloud size={20} />,
+      desc: "Containerized deployments with Docker, CI/CD via GitHub Actions, and cloud infrastructure on AWS — the stack that runs my AI apps in production.",
+      skills: ["AWS", "Docker", "GitHub Actions"],
     },
     {
       index: "06",
-      title: "Tools & Platforms",
-      skills: ["Git", "GitHub", "VS Code", "Jupyter Notebook", "Streamlit", "Gradio", "Google Colab", "LangSmith", "Docker"],
+      title: "Data & Tools",
+      icon: <Database size={20} />,
+      desc: "The daily toolkit — Pandas & NumPy for data, Matplotlib & Seaborn for insight, Git/GitHub for version control, Streamlit & React for UIs.",
+      skills: ["Pandas", "NumPy", "Matplotlib", "Seaborn", "Git", "GitHub", "Streamlit", "React"],
     },
   ]
 
   const experience = [
     {
-      role: "Freelance GenAI Developer",
-      company: "Independent Freelancer",
-      period: "Dec 2025 - Present",
+      role: "AI Engineer",
+      company: "Pyzit.Inc",
+      period: "25 Dec 2025 - 20 Sep 2026",
       location: "Remote",
       responsibilities: [
-        "Working full-time as a freelancer, primarily with local clients, delivering academic and production AI projects.",
-        "Specializing in GenAI and LLM-based systems — multi-agent architectures, RAG pipelines, and agentic workflows.",
-        "Currently building a multi-agent system that autonomously generates freelance leads.",
+        "Built multi-agent AI systems using LangGraph and CrewAI to orchestrate complex, multi-step workflows with stateful execution.",
+        "Developed and optimized RAG systems, implementing both vector-based and vectorless architectures for intelligent data retrieval.",
+        "Designed LLM-powered applications with structured outputs, tool calling, retrieval workflows, and production-oriented backend APIs.",
       ],
-      tech: ["CrewAI", "LangGraph", "LangChain", "Python", "RAG", "LLMs", "FastAPI"],
+      tech: ["LangGraph", "CrewAI", "RAG", "LLMs", "FastAPI", "Python", "AWS"],
     },
     {
-      role: "ML Engineer (Internship)",
-      company: "WebTech.dev, Vehari",
-      period: "Jun 2025 - Dec 2025",
+      role: "Machine Learning Engineer",
+      company: "WebTech.dev Software House, Vehari",
+      period: "10 Jun 2025 - 10 Dec 2025",
       location: "Vehari, Pakistan",
       responsibilities: [
-        "Trained machine learning models on real client datasets.",
-        "Monitored model performance in production and iterated to maintain accuracy.",
+        "Built end-to-end machine learning pipelines covering data cleaning, EDA, feature engineering, model training, evaluation, and deployment using Scikit-learn, XGBoost, and LightGBM.",
+        "Developed NLP solutions for text classification and sentiment analysis with HuggingFace Transformers, exposing trained models via FastAPI REST endpoints for real-time client use.",
       ],
-      tech: ["Python", "Scikit-learn", "TensorFlow", "Pandas", "MLOps"],
+      tech: ["Python", "Scikit-learn", "XGBoost", "LightGBM", "HuggingFace", "FastAPI"],
+    },
+  ]
+
+  const achievements = [
+    {
+      event: "Byte & Battle: The Ultimate Gaming & Coding Clash",
+      result: "4th Position — Programming",
+      venue: "University of Agriculture Faisalabad (UAF) Sub-Campus Burewala",
+      description:
+        "Secured 4th position in the on-the-spot programming competition at Byte & Battle, competing against participants from multiple universities.",
+    },
+    {
+      event: "VSpark — On-Spot Programming Competition",
+      result: "2nd Position",
+      venue: "COMSATS University, Vehari",
+      description:
+        "Secured 2nd position in VSpark, the on-the-spot programming competition held at COMSATS University Vehari.",
     },
   ]
 
@@ -281,8 +262,8 @@ export default function Home() {
       github: "https://github.com/Dev-with-Mouzan/DevPilot_Ai.git",
       live: "https://www.devpliotai.site/",
       description:
-        "An intelligent AI-powered development assistant that helps developers with code generation, debugging, and project management.",
-      tech: ["Python", "FastAPI", "LLMs", "AI"],
+        "Multi-agent software engineering platform where AI agents plan, implement, review, test, and deploy software projects — with stateful workflows, persistent memory, tool calling, Git checkpoints, retry/recovery, and human-in-the-loop controls.",
+      tech: ["Python", "LangGraph", "FastAPI", "React", "Tailwind CSS", "Docker", "AWS"],
     },
     {
       title: "CareerCopilot AI",
@@ -291,8 +272,8 @@ export default function Home() {
       github: "https://github.com/Dev-with-Mouzan/CareerCopilot_AI.git",
       live: "http://54.206.89.234:8000/",
       description:
-        "Multi-agent career assistant built with CrewAI and FastAPI using a mixed-LLM setup — Groq (Llama-3.1) for fast tool-calling web scraping and Gemini for deep ATS analysis and strategic reasoning.",
-      tech: ["CrewAI", "FastAPI", "Groq (Llama-3.1)", "Gemini", "Pydantic", "Python"],
+        "Agentic career intelligence platform built with LangGraph and FastAPI — resume analysis, job discovery, job matching, ATS evaluation, career planning, and interview preparation, combining LLM reasoning with deterministic skill matching and ATS scoring, deployed with Docker and AWS.",
+      tech: ["LangGraph", "FastAPI", "React", "Redis", "Docker", "AWS", "Python"],
     },
     {
       title: "FounderLens AI",
@@ -301,8 +282,8 @@ export default function Home() {
       github: "https://github.com/Dev-with-Mouzan/FounderLens_AI.git",
       live: "https://founder-lens-ai.vercel.app/",
       description:
-        "Multi-agent business analysis system built with CrewAI and FastAPI. A sequential 6-agent pipeline processes business data to generate insights on risk, market trends, growth strategies, and outcome simulations.",
-      tech: ["CrewAI", "FastAPI", "LangChain", "Supabase", "Python"],
+        "Multi-agent startup validation system running parallel competitive, market, and risk analysis with quality-control and automatic retry workflows, plus web research, structured state management, validation gates, and multiple LLM providers.",
+      tech: ["LangGraph", "FastAPI", "React", "Docker", "AWS", "Python"],
     },
     {
       title: "Literal AI",
@@ -398,7 +379,7 @@ export default function Home() {
     { value: `${stats.roles}+`, label: "Professional Roles", icon: <Code2 size={20} /> },
     { value: `${stats.projects}+`, label: "AI Projects", icon: <Brain size={20} /> },
     { value: `${stats.cgpa}`, label: "CGPA", icon: <GraduationCap size={20} /> },
-    { value: `${stats.years} Year`, label: "GenAI Study", icon: <Zap size={20} /> },
+    { value: `${stats.years} Year`, label: "AI Experience", icon: <Zap size={20} /> },
   ]
 
   const sectionHeading = (num: string, title: string, subtitle?: string) => (
@@ -559,19 +540,19 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
-                title: "LLM Architecture",
-                desc: "Prompt engineering, model behavior understanding, and advanced reasoning patterns for production systems",
-                icon: <Code2 className="text-accent" />,
+                title: "LLM Applications",
+                desc: "Prompt and context engineering, structured outputs, tool calling, and LLM evaluation for real-world applications",
+                icon: <Sparkles className="text-accent" />,
               },
               {
                 title: "RAG Systems",
-                desc: "Vector search, embeddings, semantic retrieval, and knowledge integration at scale",
+                desc: "Vector and vectorless retrieval, embeddings, and semantic search using FAISS, Chroma, and Pinecone",
                 icon: <Brain className="text-accent" />,
               },
               {
-                title: "AI Automation",
-                desc: "n8n workflows, agent orchestration, and intelligent API-based systems",
-                icon: <Zap className="text-accent" />,
+                title: "Multi-Agent Systems",
+                desc: "Agent orchestration and workflows with LangGraph and CrewAI, backed by FastAPI, Docker, and AWS",
+                icon: <Bot className="text-accent" />,
               },
             ].map((item, i) => (
               <TiltCard
@@ -602,16 +583,16 @@ export default function Home() {
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl -mr-32 -mt-32 group-hover:bg-accent/10 transition-colors duration-500 pointer-events-none"></div>
                 <div className="relative z-10 space-y-6">
                   <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                    I'm a <span className="font-semibold text-foreground">BS Computer Science</span> student in my <span className="font-semibold text-foreground">7th semester</span> at <span className="font-semibold text-foreground">GC University Faisalabad</span>,
+                    I'm a <span className="font-semibold text-foreground">BS Computer Science</span> student in my <span className="font-semibold text-foreground">7th semester</span> at <span className="font-semibold text-foreground">Govt College University Faisalabad</span>,
                     with around <span className="font-semibold text-foreground">1 year of hands-on experience</span> in Machine Learning and Generative AI.
                   </p>
                   <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                    I started with a 6-month internship as an <span className="font-semibold text-foreground">ML Engineer at WebTech.dev</span> (Vehari), and have since been
-                    freelancing independently — specializing further in <span className="font-semibold text-foreground">GenAI and LLM-based systems</span>.
+                    I started as a <span className="font-semibold text-foreground">Machine Learning Engineer at WebTech.dev</span> (Vehari), and then worked full-time as an <span className="font-semibold text-foreground">AI Engineer at Pyzit.Inc</span> —
+                    building <span className="font-semibold text-foreground">multi-agent systems, RAG pipelines, and production LLM applications</span>.
                   </p>
                   <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                    I currently work full-time as a freelancer, mainly with local clients, and I'm building a <span className="font-semibold text-foreground">multi-agent system</span>
-                    that autonomously generates my own freelancing leads.
+                    I design <span className="font-semibold text-foreground">agentic AI workflows</span> with LangGraph and CrewAI, and ship them end-to-end with FastAPI, Docker, and AWS —
+                    from idea to production.
                   </p>
                 </div>
               </div>
@@ -621,7 +602,7 @@ export default function Home() {
               {[
                 { icon: <MapPin size={24} className="text-accent" />, label: "Location", value: "Burewala, Pakistan" },
                 { icon: <GraduationCap size={24} className="text-accent" />, label: "Education", value: "B.Sc. CS (7th Sem)" },
-                { icon: <Zap size={24} className="text-accent" />, label: "Experience", value: "Freelance GenAI Developer" },
+                { icon: <Zap size={24} className="text-accent" />, label: "Experience", value: "AI Engineer @ Pyzit.Inc" },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-4 p-5 rounded-lg bg-secondary/30 border border-border hover:bg-secondary/60 transition-colors group">
                   <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-card shadow-sm border border-border group-hover:scale-105 transition-transform">
@@ -683,22 +664,45 @@ export default function Home() {
             {skillCategories.map((category, i) => (
               <Reveal3D key={i} delay={i * 0.05} className="h-full">
                 <TiltCard intensity={5} className="h-full rounded-lg">
-                  <div className="group relative bg-card border border-border rounded-lg p-7 hover:border-accent/40 transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-accent/5 flex flex-col h-full">
-                    <div className="flex items-center gap-4 mb-6">
-                      <span className="font-mono text-sm font-bold text-accent">{category.index}</span>
-                      <h3 className="font-display text-xl font-semibold text-foreground leading-tight">{category.title}</h3>
+                  <div className="group relative bg-card border border-border rounded-lg p-7 hover:border-accent/40 transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-accent/10 hover:-translate-y-1 flex flex-col h-full overflow-hidden">
+                    {/* Accent line that sweeps in on hover */}
+                    <div className="absolute top-0 left-0 h-px w-0 group-hover:w-full transition-all duration-500 bg-gradient-to-r from-accent via-accent/40 to-transparent"></div>
+                    {/* Oversized index watermark */}
+                    <span className="absolute -top-5 right-2 font-display text-[96px] font-black leading-none text-foreground/[0.04] group-hover:text-accent/10 transition-colors duration-500 pointer-events-none select-none">
+                      {category.index}
+                    </span>
+
+                    <div className="relative z-10 flex items-center gap-4 mb-6">
+                      <div className="w-11 h-11 shrink-0 rounded-lg bg-secondary border border-border flex items-center justify-center text-accent shadow-sm group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(217,119,87,0.35)] transition-all duration-300">
+                        {category.icon}
+                      </div>
+                      <div className="min-w-0">
+                        <p className="font-mono text-[11px] font-bold tracking-[0.2em] text-accent uppercase mb-0.5">{category.index}</p>
+                        <h3 className="font-display text-xl font-semibold text-foreground leading-tight">{category.title}</h3>
+                      </div>
                     </div>
 
-                    <div className="flex flex-wrap gap-2 mt-auto pt-2">
+                    <p className="relative z-10 text-[13px] leading-relaxed text-muted-foreground mb-5">
+                      {category.desc}
+                    </p>
+
+                    <div className="relative z-10 mt-auto border-t border-border pt-4 flex flex-col">
                       {category.skills.map((skill) => (
-                        <span
+                        <div
                           key={skill}
-                          className="px-3 py-1.5 bg-secondary/50 border border-border text-foreground text-xs rounded-md font-medium hover:border-accent/40 hover:text-accent transition-colors cursor-default"
+                          className="flex items-center gap-2 py-1.5 px-1 -mx-1 rounded font-mono text-[12px] hover:bg-white/[0.03] transition-colors"
                         >
-                          {skill}
-                        </span>
+                          <span className="text-accent text-[10px] shrink-0">▸</span>
+                          <span className="text-foreground/85 whitespace-nowrap">{skill}</span>
+                          <span className="flex-1 border-b border-dotted border-border mx-1 translate-y-[3px]"></span>
+                          <span className="text-accent/70 text-[10px] shrink-0">✓</span>
+                        </div>
                       ))}
                     </div>
+
+                    <p className="relative z-10 pt-4 font-mono text-[11px] text-muted-foreground/60">
+                      <span className="text-accent">$</span> {category.skills.length} skills loaded <span className="animate-pulse text-accent">▊</span>
+                    </p>
                   </div>
                 </TiltCard>
               </Reveal3D>
@@ -721,107 +725,8 @@ export default function Home() {
               <p className="text-lg text-muted-foreground max-w-2xl mt-4">Building intelligent systems that combine LLMs, RAG, and automation.</p>
             </div>
 
-            {/* Navigation buttons */}
-            <div className="flex items-center justify-end gap-3 mb-6">
-              <button
-                onClick={() => scrollProjects("left")}
-                disabled={!canScrollLeft}
-                className={`p-3 rounded-xl border transition-all ${
-                  canScrollLeft
-                    ? "border-white/[0.08] bg-white/[0.04] text-foreground hover:text-accent hover:border-accent/40 hover:bg-accent/10"
-                    : "border-white/[0.04] bg-white/[0.02] text-foreground/20 cursor-not-allowed"
-                }`}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
-              </button>
-              <button
-                onClick={() => scrollProjects("right")}
-                disabled={!canScrollRight}
-                className={`p-3 rounded-xl border transition-all ${
-                  canScrollRight
-                    ? "border-white/[0.08] bg-white/[0.04] text-foreground hover:text-accent hover:border-accent/40 hover:bg-accent/10"
-                    : "border-white/[0.04] bg-white/[0.02] text-foreground/20 cursor-not-allowed"
-                }`}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><polyline points="12 5 19 12 12 19"/></svg>
-              </button>
-            </div>
-
-            {/* Scrollable track */}
-            <div
-              ref={projectsScrollRef}
-              onScroll={checkProjectsScroll}
-              className="flex gap-6 sm:gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 pl-[max(1rem,calc(50%-43vw))] pr-[max(1rem,calc(50%-43vw))] sm:pl-[calc(50%-210px)] sm:pr-[calc(50%-210px)] scrollbar-hide"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-            >
-              {projects.map((project, i) => {
-                const num = String(i + 1).padStart(2, "0")
-                return (
-                  <div
-                    key={i}
-                    data-card
-                    className="group relative rounded-3xl overflow-visible transition-all duration-500 snap-center flex-shrink-0 w-[min(420px,86vw)] h-[540px] sm:h-[500px]"
-                    style={{
-                      background: "rgb(26 26 24)",
-                      border: "1px solid rgba(55,53,50,1)",
-                      boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
-                    }}
-                  >
-                    {/* Purple glow at bottom */}
-                    <div className="absolute -bottom-4 left-0 right-0 h-40 pointer-events-none opacity-60 rounded-b-3xl" style={{ background: "linear-gradient(to top, rgba(108,60,239,0.2), rgba(37,99,235,0.08), transparent)" }} />
-
-                    <div className="relative z-10 p-5 sm:p-7 pb-0 flex flex-col">
-                      {/* Top row: Number + GitHub/Live buttons */}
-                      <div className="flex items-start justify-between mb-8">
-                        <span className="font-display text-5xl sm:text-7xl font-black leading-none text-foreground/95 tracking-tighter">
-                          {num}
-                        </span>
-                        <div className="flex items-center gap-2 mt-1">
-                          <a href={project.github} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 text-[11px] font-mono font-bold uppercase tracking-wider bg-white/[0.04] border border-white/[0.08] text-foreground hover:text-accent hover:border-accent/40 hover:bg-accent/10 rounded-lg transition-all">
-                            GitHub
-                          </a>
-                          <a href={project.live} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 text-[11px] font-mono font-bold uppercase tracking-wider bg-white/[0.04] border border-white/[0.08] text-foreground hover:text-accent hover:border-accent/40 hover:bg-accent/10 rounded-lg transition-all">
-                            Live Demo
-                          </a>
-                        </div>
-                      </div>
-
-                      {/* Title + Technologies */}
-                      <div className="mb-4">
-                        <h3 className="font-display text-2xl sm:text-[26px] font-bold text-foreground mb-2 leading-tight">
-                          {project.title}
-                        </h3>
-                        <p className="text-[13px] text-muted-foreground font-medium mb-1">Technologies used</p>
-                        <p className="text-[13px] text-muted-foreground/60">{project.tech.join(", ")}</p>
-                      </div>
-
-                      {/* Description */}
-                      <p className="text-sm text-muted-foreground/70 mb-6 leading-relaxed line-clamp-2">
-                        {project.description}
-                      </p>
-
-                      {/* Full project screenshot at bottom */}
-                      <div className="relative w-[calc(100%+40px)] -ml-5 sm:w-[calc(100%+56px)] sm:-ml-7 flex-1 min-h-[180px] overflow-hidden rounded-b-2xl border-t border-white/[0.06] bg-black/30">
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          fill
-                          className="object-contain object-top p-3"
-                          sizes="(max-width: 768px) 500px, 500px"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-
-            {/* Dot indicators */}
-            <div className="flex items-center justify-center gap-2 mt-6">
-              {Array.from({ length: isMobile ? projects.length : Math.ceil(projects.length / 2) }).map((_, i) => (
-                <div key={i} className="w-2 h-2 rounded-full bg-muted-foreground/30" />
-              ))}
-            </div>
+            {/* Fanned card stack */}
+            <ProjectFanStack projects={projects} />
           </div>
         </section>
 
@@ -879,10 +784,50 @@ export default function Home() {
           </div>
         </section>
 
+        <section id="achievements" className="max-w-6xl mx-auto px-4 py-20 border-t border-border">
+          {sectionHeading("06", "Achievements")}
+
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+            {achievements.map((a, i) => (
+              <Reveal3D key={i} delay={i * 0.05} className="h-full">
+                <TiltCard intensity={5} className="h-full rounded-lg">
+                  <div className="group relative bg-card border border-border rounded-lg p-7 hover:border-accent/40 transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-accent/5 flex flex-col h-full overflow-hidden">
+                    <div className="absolute -top-12 -right-12 w-32 h-32 bg-accent/10 rounded-full blur-2xl group-hover:bg-accent/20 transition-colors duration-500 pointer-events-none"></div>
+
+                    <div className="relative z-10 flex flex-col h-full">
+                      <div className="flex items-start justify-between gap-4 mb-5">
+                        <div className="w-10 h-10 shrink-0 rounded-lg bg-secondary flex items-center justify-center text-accent group-hover:scale-110 transition-transform shadow-sm">
+                          <Trophy size={20} />
+                        </div>
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-wider text-accent bg-accent/10 border border-accent/30 rounded-md text-right">
+                          <Medal size={12} className="shrink-0" /> {a.result}
+                        </span>
+                      </div>
+
+                      <h3 className="font-display text-xl font-semibold text-foreground mb-3 relative z-10">
+                        {a.event}
+                      </h3>
+
+                      <p className="flex items-start gap-2 text-sm text-muted-foreground mb-5 relative z-10">
+                        <MapPin size={14} className="shrink-0 text-accent mt-0.5" />
+                        <span>{a.venue}</span>
+                      </p>
+
+                      <p className="text-sm text-muted-foreground/70 leading-relaxed relative z-10 mt-auto">
+                        {a.description}
+                      </p>
+                    </div>
+                  </div>
+                </TiltCard>
+              </Reveal3D>
+            ))}
+          </div>
+        </section>
+
         <section id="contact" className="max-w-6xl mx-auto px-4 py-20 border-t border-border bg-gradient-to-b from-muted/20 to-background">
           <div className="grid md:grid-cols-2 gap-12">
             <div data-aos="fade-up">
-              <p className="eyebrow mb-3">[06] // Contact</p>
+              <p className="eyebrow mb-3">[07] // Contact</p>
               <h2 className="font-display text-4xl md:text-5xl font-semibold text-foreground mb-4 tracking-tight">
                 Let's Work Together
               </h2>
@@ -915,7 +860,7 @@ export default function Home() {
                   </div>
                   <div>
                     <p className="font-medium text-foreground">Phone</p>
-                    <a href="tel:+923114216514" className="text-muted-foreground hover:text-accent transition-colors">+92-311-4216514</a>
+                    <a href="tel:+923151415267" className="text-muted-foreground hover:text-accent transition-colors">+92-315-1415267</a>
                   </div>
                 </div>
               </div>
@@ -1045,8 +990,8 @@ export default function Home() {
                   <a href="mailto:mouzan.ai.dev@gmail.com" className="text-sm text-muted-foreground hover:text-accent transition-colors font-mono">
                     mouzan.ai.dev@gmail.com
                   </a>
-                  <a href="tel:+923114216514" className="text-sm text-muted-foreground hover:text-accent transition-colors font-mono">
-                    +92-311-4216514
+                  <a href="tel:+923151415267" className="text-sm text-muted-foreground hover:text-accent transition-colors font-mono">
+                    +92-315-1415267
                   </a>
                   <p className="text-sm text-muted-foreground">
                     Burewala, Pakistan

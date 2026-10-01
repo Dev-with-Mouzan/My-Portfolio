@@ -167,3 +167,24 @@
     cursor: none !important;
   }
 }
+
+/* Fanned project card stack (homepage + projects page) */
+.project-fan {
+  --fan-gap: 250px;
+}
+
+@media (max-width: 1023px) {
+  .project-fan {
+    --fan-gap: 210px;
+  }
+}
+
+@media (max-width: 639px) {
+  .project-fan {
+    --fan-gap: 165px;
+  }
+  /* Only the center card + immediate neighbors on small screens */
+  .project-fan .fan-card[data-abs="2"] {
+    display: none;
+  }
+}
