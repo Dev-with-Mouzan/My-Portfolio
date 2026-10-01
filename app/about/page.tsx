@@ -49,7 +49,7 @@ export default function About() {
                       with around <span className="font-semibold text-foreground">1 year of hands-on experience</span> in Machine Learning and Generative AI.
                     </p>
                     <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                      I started as a <span className="font-semibold text-foreground">Machine Learning Engineer at WebTech.dev</span> (Vehari), and then worked full-time as an <span className="font-semibold text-foreground">AI Engineer at Pyzit.Inc</span> —
+                      I started as a <span className="font-semibold text-foreground">Machine Learning Engineer at WebTech.dev</span> (Vehari), and then worked Remotely as an <span className="font-semibold text-foreground">AI Engineer at Pyzit.Inc</span> —
                       building <span className="font-semibold text-foreground">multi-agent systems, RAG pipelines, and production LLM applications</span>.
                     </p>
                     <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
