@@ -6,7 +6,7 @@ import { Navigation } from "@/components/navigation"
 import { Particles } from "@/components/particles"
 import { CustomCursor } from "@/components/custom-cursor"
 import { ProjectFanStack } from "@/components/project-fan-stack"
-import { ArrowRight, Download, MapPin, GraduationCap, Code2, Brain, Zap, ArrowUp, Phone, Trophy, Medal, Sparkles, Bot, BrainCircuit, Server, Cloud, Database } from "lucide-react"
+import { ArrowRight, Download, MapPin, GraduationCap, Code2, Brain, Zap, Phone, Trophy, Medal, Sparkles, Bot, BrainCircuit, Server, Cloud, Database } from "lucide-react"
 import { Spinner } from "@/components/spinner"
 import { FloatingShapes, ScrollCube, Reveal3D, TiltCard } from "@/components/three-d"
 import { useForm } from "react-hook-form"
@@ -34,7 +34,6 @@ export default function Home() {
     resolver: zodResolver(contactSchema),
     defaultValues: { name: "", email: "", subject: "", message: "" },
   })
-  const [showBackToTop, setShowBackToTop] = useState(false)
   const [statsAnimated, setStatsAnimated] = useState(false)
   const [stats, setStats] = useState({
     roles: 0,
@@ -55,8 +54,6 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setShowBackToTop(window.scrollY > 300)
-
       const heroSection = document.getElementById("hero-stats")
       if (heroSection && !statsAnimated) {
         const rect = heroSection.getBoundingClientRect()
@@ -94,10 +91,6 @@ export default function Home() {
         clearInterval(timer)
       }
     }, interval)
-  }
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
   useEffect(() => {
@@ -1038,24 +1031,6 @@ export default function Home() {
           </div>
         </footer>
       </main>
-
-      {showBackToTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-24 right-8 p-3 bg-foreground text-background rounded-full shadow-lg hover:opacity-85 transition-all z-50"
-          style={{ animation: "fadeIn 0.3s ease-out" }}
-          aria-label="Back to top"
-        >
-          <ArrowUp size={20} />
-        </button>
-      )}
-
-      <style jsx global>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
     </>
   )
 }

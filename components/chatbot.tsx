@@ -192,8 +192,8 @@ export function Chatbot() {
             aria-label="Open portfolio assistant chat"
           >
             {showHint && (
-              <div className="absolute bottom-full right-0 mb-3 w-max max-w-[240px]">
-                <div className="px-3.5 py-2.5 bg-card border border-accent/50 rounded-lg rounded-br-none text-xs text-foreground shadow-xl leading-relaxed">
+              <div className="absolute bottom-full right-0 mb-3 w-max max-w-[160px] sm:max-w-[240px]">
+                <div className="px-3 py-2 sm:px-3.5 sm:py-2.5 bg-card border border-accent/50 rounded-lg rounded-br-none text-[11px] sm:text-xs text-foreground shadow-xl leading-relaxed">
                   <span className="text-accent font-semibold">$</span> hi! I'm <span className="text-accent font-semibold">mr_ai</span> — ask me anything about Mouzan
                   <span className="ml-0.5 inline-block w-1.5 h-3 bg-accent align-text-bottom terminal-caret"></span>
                 </div>
