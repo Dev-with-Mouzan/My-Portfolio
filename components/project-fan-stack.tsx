@@ -44,7 +44,7 @@ function useFanGap() {
   return layout
 }
 
-export function ProjectFanStack({ projects, autoAdvanceMs = 5000 }: { projects: FanProject[]; autoAdvanceMs?: number }) {
+export function ProjectFanStack({ projects, autoAdvanceMs = 2000 }: { projects: FanProject[]; autoAdvanceMs?: number }) {
   const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
   const { gap, compact } = useFanGap()

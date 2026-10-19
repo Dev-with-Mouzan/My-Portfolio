@@ -17,7 +17,7 @@ export default function Experience() {
   const experience = [
     {
       role: "AI Engineer",
-      company: "Pyzit.Inc",
+      company: "Freelance",
       period: "25 Dec 2025 - 20 Sep 2026",
       location: "Remote",
       type: "Remote",

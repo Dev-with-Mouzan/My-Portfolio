@@ -207,7 +207,7 @@ export default function Home() {
   const experience = [
     {
       role: "AI Engineer",
-      company: "Pyzit.Inc",
+      company: "Freelance",
       period: "25 Dec 2025 - 20 Sep 2026",
       location: "Remote",
       responsibilities: [
@@ -588,11 +588,11 @@ export default function Home() {
                     with around <span className="font-semibold text-foreground">1 year of hands-on experience</span> in Machine Learning and Generative AI.
                   </p>
                   <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                    I started as a <span className="font-semibold text-foreground">Machine Learning Engineer at WebTech.dev</span> (Vehari), and then worked Remotely as an <span className="font-semibold text-foreground">AI Engineer at Pyzit.Inc</span> —
+                    I started as a <span className="font-semibold text-foreground">Machine Learning Engineer at WebTech.dev</span> (Vehari), and then worked Remotely as a <span className="font-semibold text-foreground">Freelance AI Engineer</span>
                     building <span className="font-semibold text-foreground">multi-agent systems, RAG pipelines, and production LLM applications</span>.
                   </p>
                   <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                    I design <span className="font-semibold text-foreground">agentic AI workflows</span> with LangGraph and CrewAI, and ship them end-to-end with FastAPI, Docker, and AWS —
+                    I design <span className="font-semibold text-foreground">agentic AI workflows</span> with LangGraph and CrewAI, and ship them end-to-end with FastAPI, Docker, and AWS
                     from idea to production.
                   </p>
                 </div>
@@ -603,7 +603,7 @@ export default function Home() {
               {[
                 { icon: <MapPin size={24} className="text-accent" />, label: "Location", value: "Burewala, Pakistan" },
                 { icon: <GraduationCap size={24} className="text-accent" />, label: "Education", value: "B.Sc. CS (7th Sem)" },
-                { icon: <Zap size={24} className="text-accent" />, label: "Experience", value: "AI Engineer @ Pyzit.Inc" },
+                { icon: <Zap size={24} className="text-accent" />, label: "Experience", value: "Freelance AI Engineer" },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-4 p-5 rounded-lg bg-secondary/30 border border-border hover:bg-secondary/60 transition-colors group">
                   <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-card shadow-sm border border-border group-hover:scale-105 transition-transform">

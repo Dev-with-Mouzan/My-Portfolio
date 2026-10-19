@@ -2,7 +2,7 @@ export const portfolioData = {
   name: "Mouzan Raza",
   title: "AI Engineer",
   tagline:
-    "I build production-ready AI applications — RAG systems, LLM pipelines, and intelligent backends that solve real problems.",
+    "I build production-ready AI applications RAG systems, LLM pipelines, and intelligent backends that solve real problems.",
   location: "Burewala, Pakistan",
   email: "mouzan.ai.dev@gmail.com",
   phone: "+92-315-1415267",
@@ -36,7 +36,7 @@ export const portfolioData = {
   experience: [
     {
       role: "AI Engineer",
-      company: "Pyzit.Inc",
+      company: "Freelance",
       period: "25 Dec 2025 - 20 Sep 2026",
       details:
         "Built multi-agent AI systems using LangGraph and CrewAI to orchestrate complex, multi-step workflows with stateful execution. Developed and optimized RAG systems, implementing both vector-based and vectorless architectures for intelligent data retrieval. Designed LLM-powered applications with structured outputs, tool calling, retrieval workflows, and production-oriented backend APIs.",
@@ -141,10 +141,10 @@ export const portfolioData = {
   ],
   funFacts: [
     "Mouzan is a 7th-semester BS Computer Science student at Govt College University Faisalabad with a 3.83 CGPA.",
-    "He started as a Machine Learning Engineer at WebTech.dev (Vehari) and then worked as an AI Engineer at Pyzit.Inc, building multi-agent and RAG systems.",
+    "He started as a Machine Learning Engineer at WebTech.dev (Vehari) and then worked as a Freelance AI Engineer, building multi-agent and RAG systems.",
     "He built DevPilot AI, a multi-agent platform where AI agents plan, implement, review, test, and deploy software projects.",
     "He specializes in LangGraph and CrewAI multi-agent systems, vector & vectorless RAG pipelines, and production LLM applications.",
-    "He has 1+ year of hands-on experience shipping real AI products — from idea to production with FastAPI, Docker, and AWS.",
+    "He has 1+ year of hands-on experience shipping real AI products from idea to production with FastAPI, Docker, and AWS.",
     "He won 2nd position in VSpark, an on-the-spot programming competition at COMSATS University Vehari.",
   ],
 }
@@ -171,7 +171,7 @@ interface ChatPattern {
 }
 
 const aboutReply = (): ChatReply => ({
-  text: `${portfolioData.name} is a ${portfolioData.title} — a ${portfolioData.education.semester.toLowerCase()} Computer Science student at ${portfolioData.education.university} with a CGPA of ${portfolioData.education.cgpa} and around 1 year of hands-on experience in ML and GenAI.\n\n${portfolioData.tagline}\n\nHe started as a Machine Learning Engineer at WebTech.dev (Vehari) and then worked as an AI Engineer at Pyzit.Inc (remote), building multi-agent systems with LangGraph and CrewAI, RAG pipelines, and production-oriented LLM applications. He is currently ${portfolioData.status.toLowerCase()}.`,
+  text: `${portfolioData.name} is a ${portfolioData.title} a ${portfolioData.education.semester.toLowerCase()} Computer Science student at ${portfolioData.education.university} with a CGPA of ${portfolioData.education.cgpa} and around 1 year of hands-on experience in ML and GenAI.\n\n${portfolioData.tagline}\n\nI started as a Machine Learning Engineer at WebTech.dev (Vehari) and then worked as a Freelance AI Engineer (remote), building multi-agent systems with LangGraph and CrewAI, RAG pipelines, and production-oriented LLM applications. I am currently ${portfolioData.status.toLowerCase()}.`,
   suggestions: ["Skills", "Projects", "Experience", "Contact"],
 })
 
