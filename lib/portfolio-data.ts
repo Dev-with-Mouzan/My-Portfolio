@@ -88,7 +88,7 @@ export const portfolioData = {
       description:
         "Agentic career intelligence platform (LangGraph + FastAPI) for resume analysis, job discovery, job matching, ATS evaluation, career planning, and interview preparation — combining LLM reasoning with deterministic skill matching and ATS scoring, deployed on Docker and AWS.",
       url: "https://github.com/Dev-with-Mouzan/CareerCopilot_AI.git",
-      demo: "http://54.206.89.234:8000/",
+      demo: "http://193.122.82.94:8000/",
     },
     {
       name: "FounderLens AI",

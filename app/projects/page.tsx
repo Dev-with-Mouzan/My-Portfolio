@@ -22,7 +22,7 @@ const projects = [
     category: "Multi-Agent Systems",
     image: "/careercopilot.PNG",
     github: "https://github.com/Dev-with-Mouzan/CareerCopilot_AI.git",
-    live: "http://54.206.89.234:8000/",
+    live: "http://193.122.82.94:8000/",
     description:
       "Agentic career intelligence platform built with LangGraph and FastAPI — resume analysis, job discovery, job matching, ATS evaluation, career planning, and interview preparation.",
     tech: ["LangGraph", "FastAPI", "React", "Redis", "Docker", "AWS", "Python"],
