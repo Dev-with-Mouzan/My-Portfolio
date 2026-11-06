@@ -283,7 +283,7 @@ export default function Home() {
       category: "AI Application",
       image: "/Literal_ai.PNG",
       github: "https://github.com/Dev-with-Mouzan/Litera_Ai.git",
-      live: "http://3.26.219.151/",
+      live: "http://193.122.79.52/",
       description:
         "An AI-powered platform that leverages language models for intelligent text analysis and processing capabilities.",
       tech: ["Python", "LLMs", "AI"],
