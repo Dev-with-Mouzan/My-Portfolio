@@ -490,8 +490,8 @@ export default function Home() {
                   <ArrowRight size={18} />
                 </a>
                 <a
-                  href="/Mouzan_Raza_Resume.docx"
-                  download="Mouzan_Raza_Resume.docx"
+                  href="/Mouzan_Raza - Ai Engineer.docx"
+                  download="Mouzan_Raza - Ai Engineer.docx"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-3 px-8 py-3.5 border border-border text-foreground hover:border-accent hover:text-accent rounded-md transition-all font-semibold text-base"
